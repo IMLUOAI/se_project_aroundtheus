@@ -1,0 +1,13 @@
+.gallery {
+    grid-area: gallery;
+    width: 880px;
+    height: 742px;
+    margin: 0 auto;
+ }
+
+.gallery__cards {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(2, 1fr);
+    gap: 20px 17px;
+}

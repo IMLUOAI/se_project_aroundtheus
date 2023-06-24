@@ -1,0 +1,115 @@
+.profile {
+    grid-area: profile;
+  /* display: grid; */
+  /* grid-template-columns: 1fr 1fr 1fr 1fr;
+  grid-template-rows:  1fr 1fr;
+  grid-area: "avatar descrtption editbutton plusbutton"
+  "avatar description . ."; */
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+/* margin: 40px 200px 51px 200px; */
+margin: 0 auto;
+max-width:880px;
+height: 120px;
+}
+
+.profile__avatar {
+    /* grid-area: avatar; */
+    max-width: 120px;
+    min-height: 120px;
+   border-radius: 50%;
+      margin: 3.75px 0;
+      /* margin-right: 22.5px; */
+}
+
+.profile__info {
+  /* grid-area: description; */
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  margin: 22px auto 21px 3.75px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+.profile__title {
+    color: #fff;
+    font-family: 'Inter', Arial, sans-serif;
+font-style: normal;
+font-weight: 500;
+font-size: 42px;
+line-height: 1.1;
+margin: 3.75px 0  0;
+}
+
+.profile__subtitle {
+    font-family: 'Inter', Arial, sans-serif;
+font-style: normal;
+font-weight: 400;
+font-size: 18px;
+line-height: 1.2;
+color: #FFF;
+margin-left: 3.75px;
+margin-top: 7px;
+}
+
+.profile__edit-button {
+    /* grid-area: editbutton; */
+    width: 24px;
+    height: 24px;
+    border: 1px solid #fff; 
+    margin: 37px 0 59px 18px;
+    /* margin-left: auto; */
+    background: transparent url("../vectors/pencil.svg");
+   background-position: center;
+   background-repeat: no-repeat;
+   transition: opacity 0.6s linear;
+}
+
+.profile__edit-button:hover {
+    opacity: 0.6;
+}
+
+.profile__plus-button {
+    /* grid-area: plusbutton; */
+    margin: 35px 0  35px auto;
+    /* box-sizing: border-box; */
+    min-width: 150px;
+    height: 50px;
+    /* margin-left: auto; */
+    border: 2px solid #FFF;
+    border-radius: 2px;
+    background: transparent url("../vectors/Vectorplus.svg");
+    background-position: center;
+    background-repeat: no-repeat;
+    transition: opacity 0.6s linear;
+} 
+
+.profile__plus-button:hover {
+    opacity: 0.6;
+}
+
+@media screen and (max-width:760px) {
+    .profile__plus-button {
+        margin-left: 10px;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .profile {
+        flex-direction: column;
+    }
+
+    .profile__avatar {
+        margin: 0;
+    }
+
+    .profile__description {
+        display: flex;
+        flex-wrap: wrap;
+        
+    }
+
+}
