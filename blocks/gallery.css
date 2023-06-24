@@ -1,6 +1,6 @@
 .gallery {
     grid-area: gallery;
-    width: 880px;
+    max-width: 880px;
     height: 742px;
     margin: 0 auto;
  }
@@ -11,3 +11,24 @@
     grid-template-rows: repeat(2, 1fr);
     gap: 20px 17px;
 }
+
+@media screen and (max-width: 320px) {
+   .gallery__cards {
+     display: grid;
+     max-width: 282px;
+     grid-template-columns: 1fr;
+     grid-template-rows: repeat(6, 1fr);
+     gap: 20px;
+     margin: 0 auto;
+   }
+}
+
+@media screen and (max-width: 320px) and (max-width: 1280px) {
+    .gallery__cards {
+      display: grid;
+      grid-template-columns: 282px repeat(2,  minmax(auto-fit, 1fr));
+      grid-template-rows: repeat(6, 1fr);
+      gap: 20px;
+      margin: 0 auto;
+    }
+ }

@@ -1,21 +1,15 @@
 .profile {
     grid-area: profile;
-  /* display: grid; */
-  /* grid-template-columns: 1fr 1fr 1fr 1fr;
-  grid-template-rows:  1fr 1fr;
-  grid-area: "avatar descrtption editbutton plusbutton"
-  "avatar description . ."; */
-  display: flex;
+    display: flex;
   flex-direction: row;
   flex-wrap: wrap;
-/* margin: 40px 200px 51px 200px; */
-margin: 0 auto;
+margin: 40px 200px 51px 200px;
+/* margin: 0 auto; */
 max-width:880px;
 height: 120px;
 }
 
 .profile__avatar {
-    /* grid-area: avatar; */
     max-width: 120px;
     min-height: 120px;
    border-radius: 50%;
@@ -24,14 +18,15 @@ height: 120px;
 }
 
 .profile__info {
-  /* grid-area: description; */
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
+    max-width: 415px;
+    min-height: 77px;
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
   margin: 22px auto 21px 3.75px;
-  text-overflow: ellipsis;
+  /* text-overflow: ellipsis;
   white-space: nowrap;
-  overflow: hidden;
+  overflow: hidden; */
 }
 
 .profile__title {
@@ -41,7 +36,7 @@ font-style: normal;
 font-weight: 500;
 font-size: 42px;
 line-height: 1.1;
-margin: 3.75px 0  0;
+margin: 3.75px 0 0 3.75px;
 }
 
 .profile__subtitle {
@@ -56,11 +51,10 @@ margin-top: 7px;
 }
 
 .profile__edit-button {
-    /* grid-area: editbutton; */
     width: 24px;
     height: 24px;
     border: 1px solid #fff; 
-    margin: 37px 0 59px 18px;
+    margin: 37px auto 59px 18px;
     /* margin-left: auto; */
     background: transparent url("../vectors/pencil.svg");
    background-position: center;
@@ -91,25 +85,13 @@ margin-top: 7px;
     opacity: 0.6;
 }
 
-@media screen and (max-width:760px) {
-    .profile__plus-button {
-        margin-left: 10px;
-    }
-}
 
-@media screen and (max-width: 480px) {
+@media screen and (max-width: 320px) {
     .profile {
-        flex-direction: column;
+        display: grid;
+        grid-template-columns: 1fr;
+        grid-template-rows: 1fr 1fr 1fr;
     }
 
-    .profile__avatar {
-        margin: 0;
-    }
-
-    .profile__description {
-        display: flex;
-        flex-wrap: wrap;
-        
-    }
 
 }
