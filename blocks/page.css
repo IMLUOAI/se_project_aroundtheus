@@ -3,14 +3,8 @@
     min-height: 1217px;
     font-family: "inter", Arial, sans-serif;
     background-color: #000;
+    color: #fff;
     box-sizing: border-box;
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    grid-template-rows: 1fr 1fr 742px 1fr;
-    grid-template-areas: "header header header"
-    "profile profile profile"
-    "gallery gallery gallery"
-    "footer footer footer";
     margin: 0 auto; 
     -moz-osx-font-smoothing: grayscale;
 -webkit-font-smoothing: antialiased;
@@ -20,8 +14,20 @@
   text-rendering: optimizeLegibility;
 }
 
+.page__content {
+   display: flex;
+   flex-direction: column;
+   min-height: 100vh;
+}
 
-@media screen and (max-width: 320px) and (max-width:1280px) {
+.page__section {
+    max-width: 880px;
+    width: 100%;
+    position: relative;
+    margin: 0 auto;
+
+}
+/* @media screen and (max-width: 320px) and (max-width:1280px) {
     .page {
        display: grid;
        margin: 0 auto;
@@ -31,4 +37,4 @@
     .header {
         width: 90%;
     }
-}
+} */

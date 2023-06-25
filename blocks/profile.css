@@ -1,12 +1,7 @@
 .profile {
-    grid-area: profile;
     display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-margin: 40px 200px 51px 200px;
-/* margin: 0 auto; */
-max-width:880px;
-height: 120px;
+    align-items: center;
+    margin-top: 40px;
 }
 
 .profile__avatar {
@@ -14,48 +9,46 @@ height: 120px;
     min-height: 120px;
    border-radius: 50%;
       margin: 3.75px 0;
-      /* margin-right: 22.5px; */
+      object-fit: cover;
+      background-position: center;
 }
 
 .profile__info {
-    max-width: 415px;
-    min-height: 77px;
-    display: flex;
-    flex-wrap: wrap;
-    flex-direction: row;
-  margin: 22px auto 21px 3.75px;
-  /* text-overflow: ellipsis;
-  white-space: nowrap;
-  overflow: hidden; */
+   display: grid;
+    grid-template-areas: "title button"
+    "description description";
+    grid-template-columns: minmax(auto, 373px) auto;
+    margin: 22px auto auto 21.5px;
 }
 
 .profile__title {
+    grid-area: title;
     color: #fff;
     font-family: 'Inter', Arial, sans-serif;
 font-style: normal;
 font-weight: 500;
 font-size: 42px;
 line-height: 1.1;
-margin: 3.75px 0 0 3.75px;
+margin: 0;
 }
 
-.profile__subtitle {
+.profile__description {
+    grid-area: description;
     font-family: 'Inter', Arial, sans-serif;
 font-style: normal;
 font-weight: 400;
 font-size: 18px;
 line-height: 1.2;
 color: #FFF;
-margin-left: 3.75px;
-margin-top: 7px;
+margin: 7px auto auto 0;
 }
 
 .profile__edit-button {
+    grid-area: button;
     width: 24px;
     height: 24px;
     border: 1px solid #fff; 
-    margin: 37px auto 59px 18px;
-    /* margin-left: auto; */
+    margin: auto 18px;
     background: transparent url("../vectors/pencil.svg");
    background-position: center;
    background-repeat: no-repeat;
@@ -67,12 +60,9 @@ margin-top: 7px;
 }
 
 .profile__plus-button {
-    /* grid-area: plusbutton; */
-    margin: 35px 0  35px auto;
-    /* box-sizing: border-box; */
+    margin: 0;
     min-width: 150px;
     height: 50px;
-    /* margin-left: auto; */
     border: 2px solid #FFF;
     border-radius: 2px;
     background: transparent url("../vectors/Vectorplus.svg");
@@ -86,12 +76,12 @@ margin-top: 7px;
 }
 
 
-@media screen and (max-width: 320px) {
+/* @media screen and (max-width: 320px) {
     .profile {
         display: grid;
-        grid-template-columns: 1fr;
-        grid-template-rows: 1fr 1fr 1fr;
+        grid-template-columns: repeat(auto-fit, 1fr);
+        grid-template-rows: repeat(auto-fit, 1fr);
     }
 
 
-}
+} */

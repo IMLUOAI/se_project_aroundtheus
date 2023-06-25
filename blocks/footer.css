@@ -1,6 +1,5 @@
 .footer {
-    grid-area: footer;
-    margin: 67px auto 60px 200px;
+    margin: 67px auto 60px;
 }
 
 .footer__copyright {    
