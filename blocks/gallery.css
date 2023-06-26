@@ -1,0 +1,23 @@
+.gallery {
+    max-width: 880px;
+    height: 742px;
+    margin-top: 30px;
+ }
+
+.gallery__cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, 282px);
+    list-style-type: none;
+    gap: 20px 17px;
+    padding: 0;
+    margin: 0;
+}
+
+@media screen and (min-width: 320px) and (max-width: 568px) {
+    .gallery__cards {
+        display: flex;
+        justify-content: center;
+        flex-wrap: wrap;
+        width: calc(100% - 40px);
+    }
+}

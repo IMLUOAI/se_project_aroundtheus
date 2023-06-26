@@ -30,6 +30,9 @@ font-weight: 500;
 font-size: 42px;
 line-height: 1.1;
 margin: 0;
+text-overflow: ellipsis;
+white-space: nowrap;
+overflow: hidden;
 }
 
 .profile__description {
@@ -41,6 +44,7 @@ font-size: 18px;
 line-height: 1.2;
 color: #FFF;
 margin: 7px auto auto 0;
+
 }
 
 .profile__edit-button {
@@ -76,12 +80,29 @@ margin: 7px auto auto 0;
 }
 
 
-/* @media screen and (max-width: 320px) {
+@media screen and (min-width: 320px) and (max-width: 568px) {
     .profile {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, 1fr);
-        grid-template-rows: repeat(auto-fit, 1fr);
+        display: flex;
+        flex-direction: column;
+        align-items: center;
     }
 
+    .profile__info {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        width: 100%;
+    }
 
-} */
+    .profile__description {
+        width: 100%;
+        text-align: center;
+    }
+
+    .profile__plus-button {
+        margin:  0;
+        width: 100%;
+    }
+}
+
+   
