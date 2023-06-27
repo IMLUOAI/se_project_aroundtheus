@@ -5,18 +5,23 @@
 - Intro
 - Figma
 - Images
+- Vectors
+- vendor
 
 **Intro**
 
 This project is made so all the elements are displayed correctly on popular screen sizes. We recommend investing more time in completing this project, since it's more difficult than previous ones.
 
-**Figma**
+**vectors**
+This project's avatar, header\_\_logo, edit-button, plus-button, and heart-button are .svg format which were downloaded from our Figma.
 
-- [Link to the project on Figma](https://www.figma.com/file/ii4xxsJ0ghevUOcssTlHZv/Sprint-3%3A-Around-the-US?node-id=0%3A1)
+**images**
 
-**Images**
+This project's card pictures are suing jpg format which were downloaded from our Figma.
 
-The way you'll do this at work is by exporting images directly from Figma — we recommend doing that to practice more. Don't forget to optimize them [here](https://tinypng.com/), so your project loads faster.
+**vendor**
+
+The fonts are downloaded from the giving source of our cource, and only two main fonts were applied in this project.
 
 **GitHub**
 

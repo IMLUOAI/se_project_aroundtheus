@@ -17,12 +17,13 @@
     border-radius: 0 0 10px 10px;
     background-color: #fff;
    display: flex;
+   justify-content: space-between;
    align-items: center;
 }
 
 .card__title {
     margin-left: 20px;  
-    margin-right: auto;
+    /* margin-right: auto; */
     font-family: 'Inter', Arial, sans-serif;
     font-style: normal;
     font-weight: 900;
@@ -37,8 +38,8 @@
 .card__heart-button {
     width: 21px;
     height: 18px;
-    margin-left: auto;
-    margin-right: 30px;
+    /* margin-left: auto; */
+    margin-right: 29px;
     border: none;
     background: transparent url("../vectors/Vector.svg") center no-repeat;
 }

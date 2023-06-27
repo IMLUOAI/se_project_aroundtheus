@@ -14,11 +14,3 @@ line-height: 1.2;
 color:#545454;
 }
 
-/* @media screen and (min-width: 320px) and (max-width: 568px) {
-    .footer__copyright {
-        width: calc(100% - 40px);
-        margin: 0 auto;
-        display: flex;
-        flex-wrap: wrap;
-    }
-} */

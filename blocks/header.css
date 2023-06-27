@@ -14,12 +14,5 @@
     display: flex;
     justify-content: baseline;
     margin: 0 auto 41px 0;
-    fill: #fff;
+    fill: #fff; 
 }
-
-
-@media screen and (max-width: 480px) {
-    .header {
-        margin: 0 19px;
-    }
-} 
