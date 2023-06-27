@@ -25,4 +25,4 @@ The fonts are downloaded from the giving source of our cource, and only two main
 
 **GitHub**
 
-- [Link to the project on my Github](https://github.com/IMLUOAI/se_project_aroundtheus.git)
+- [Link to the project on my Github](https://imluoai.github.io/se_project_aroundtheus/)
