@@ -11,6 +11,7 @@
     margin: 3.75px 0;
     object-fit: cover;
     background-position: center;
+    display: block;
 }
 
 .profile__info {
@@ -45,7 +46,9 @@ font-size: 18px;
 line-height: 1.2;
 color: #FFF;
 margin: 7px auto auto 0;
-
+text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
 
 }
 
@@ -122,7 +125,6 @@ margin: 7px auto auto 0;
     .profile__plus-button {
         margin-top:  36px;
         width: 100%;
-        max-width: 568px;
     }
 }
 
