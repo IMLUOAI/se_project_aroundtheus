@@ -1,9 +1,10 @@
 .footer {
 margin: 67px auto 60px;
+max-width: 880px;
 }
 
 .footer__copyright {    
-width: 318px;
+max-width: 318px;
 margin: 0;
 font-family:'Inter', Arial, sans-serif;
 font-style: normal;
@@ -11,5 +12,16 @@ font-weight: 400;
 font-size: 18px;
 line-height: 1.2;
 color:#545454;
+}
+
+@media screen and (max-width: 320px) and (max-width: 768px) {
+.footer {
+    margin: 36px 19px;
+    max-width: 320px;
+}
+.footer__copyright {
+   font-size: 14px;
+   max-width: 282px;
+}
 }
 
