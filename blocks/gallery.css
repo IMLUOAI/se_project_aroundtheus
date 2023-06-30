@@ -1,23 +1,26 @@
 .gallery {
     max-width: 880px;
-    margin-top: 30px;
+    margin-top: 51px;
  }
 
 .gallery__cards {
     display: grid;
     grid-template-columns: repeat(auto-fit, 282px);
     list-style-type: none;
+    justify-content: center;
+    flex-wrap: wrap;
     gap: 20px 17px;
     padding: 0;
-    margin: 0;
+    margin: 0 auto;
 }
 
-@media screen and (min-width: 320px) and (max-width: 768px) {
-      .gallery__cards {
-        display: flex;
-        justify-content: center;
-        flex-wrap: wrap;
-        width: calc(100% - 40px);
+@media screen and (max-width: 320px) and (max-width: 768px) {
+.gallery {
+    margin-top: 0;
+    max-width: 320px;
+}
+.gallery__cards {
+    width: calc(100% - 40px);
     }
-      .
+      
 }
