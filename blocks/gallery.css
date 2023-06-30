@@ -1,6 +1,6 @@
 .gallery {
     max-width: 880px;
-    margin-top: 51px;
+    margin: 0 auto;
  }
 
 .gallery__cards {
@@ -17,7 +17,7 @@
 @media screen and (max-width: 320px) and (max-width: 768px) {
 .gallery {
     margin-top: 0;
-    max-width: 320px;
+    min-width: 320px;
 }
 .gallery__cards {
     width: calc(100% - 40px);
