@@ -125,7 +125,7 @@ text-overflow: ellipsis;
     .profile__description {
         font-size: 14px;
         width:100%;
-        max-width: 282px;
+        min-width: 282px;
         margin: 14px auto 0;
         text-align: center;
     }
