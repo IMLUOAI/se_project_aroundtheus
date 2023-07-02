@@ -130,6 +130,7 @@ text-overflow: ellipsis;
         width:100%;
         max-width: 282px;
         margin: 14px auto 0;
+        text-align: center;
     }
 
     .profile__plus-button {
