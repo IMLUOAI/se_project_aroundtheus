@@ -16,8 +16,10 @@ color:#545454;
 
 @media screen and (max-width: 768px) {
 .footer {
-    margin: 48px 19px 36px;
-    max-width:768px;
+    margin: 48px auto 36px;
+    max-width: 768px;
+    padding-left: 19px;
+    box-sizing: border-box;
 }
 .footer__copyright {
    font-size: 14px;
