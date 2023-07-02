@@ -103,7 +103,7 @@ text-overflow: ellipsis;
     .profile {
         flex-direction: column;
         margin: 42px auto 36px;
-        max-width: 768;
+        max-width: 768px;
     }
 
     .profile__info {
