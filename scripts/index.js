@@ -15,21 +15,6 @@ const initialCards = [
   },
 
   {
-    title: "Bariloche Argentina",
-    link: "https://unsplash.com/photos/SHcHVFhz7-M",
-  },
-
-  {
-    title: "Zurich Swizerland",
-    link: "https://unsplash.com/photos/uTLzs3j7Glw",
-  },
-
-  {
-    title: "Eltz Castle",
-    link: "https://unsplash.com/photos/cR88oyyXdPk",
-  },
-
-  {
     title: "Teran",
     link: "https://unsplash.com/photos/tmD2T6L4cWA",
   },
