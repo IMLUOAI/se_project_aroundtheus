@@ -83,21 +83,6 @@
     border-bottom: 1px solid rgba(0, 0, 0, 0.2)
 }
 
-.modal__form [type="description"] {
-    width: 358px;
-    height: 14px;
-    color: #000;
-    font-family: "Inter", Arial, sans-serif;
-    font-size: 14px;
-    font-style: normal;
-    font-weight: 400;
-    line-height: normal;
-    margin: 0;
-    border: none;
-    padding: 0 0 11px;
-    border-bottom: 1px solid rgba(0, 0, 0, 0.2)
-}
-
 ::placeholder {
     color: #000;
 }
@@ -114,7 +99,7 @@ font-size: 18px;
 font-style: normal;
 font-weight: 400;
 line-height: normal;
-margin: 48px 0 0;
+margin: 18.26px 0 0;
 border: none;
 }
 
@@ -159,17 +144,10 @@ border: none;
         padding: 0 0 11px;
     }
 
-    .modal__form [type="description"] {
-        width: 238px;
-        height: 14px;
-        margin: 0;
-        padding: 0 0 11px;
-    }
-
     .modal__submit-button {
         width: 238px;
         height: 46px;
-        margin: 45px 0 0;
+        margin: 15px 0 0;
         padding: 0;
     }
 }
