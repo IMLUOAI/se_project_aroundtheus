@@ -15,7 +15,7 @@
 }
 
 .modal.modal_opened {
-  display: flex;
+  display: block;
 }
 
 .modal__container {

@@ -28,7 +28,7 @@
             <h1 class="profile__title">Jacques Cousteau</h1>
             <button
               type="button"
-              id="profile-edit-button"
+              id="profile-open-button"
               class="profile__edit-button"
             ></button>
             <p class="profile__description">Explorer</p>
@@ -36,81 +36,14 @@
           <button type="button" class="profile__plus-button"></button>
         </section>
         <section class="gallery page__section">
-          <ul class="gallery__cards">
-            <li class="card">
-              <img
-                src="./card-images/alexander-andrews-yOIT88xWkbg-unsplash.jpg"
-                alt="Lonely Earth"
-                class="card__image"
-              />
-              <div class="card__description">
-                <h2 class="card__title">Lonely Earth</h2>
-                <button type="button" class="card__heart-button"></button>
-              </div>
-            </li>
-            <li class="card">
-              <img
-                src="./card-images/art-institute-of-chicago-SLtSqhLypuc-unsplash.jpg"
-                alt="boys bathing"
-                class="card__image"
-              />
-              <div class="card__description">
-                <h2 class="card__title">Boys Bathing</h2>
-                <button type="button" class="card__heart-button"></button>
-              </div>
-            </li>
-            <li class="card">
-              <img
-                src="./card-images/filipe-freitas-9A5wyDXopWI-unsplash.jpg"
-                alt="cloudy sunrise"
-                class="card__image"
-              />
-              <div class="card__description">
-                <h2 class="card__title">Cloudy Sunrise</h2>
-                <button type="button" class="card__heart-button"></button>
-              </div>
-            </li>
-            <li class="card">
-              <img
-                src="./card-images/omid-armin-tmD2T6L4cWA-unsplash.jpg"
-                alt="Teran"
-                class="card__image"
-              />
-              <div class="card__description">
-                <h2 class="card__title">Teran</h2>
-                <button type="button" class="card__heart-button"></button>
-              </div>
-            </li>
-            <li class="card">
-              <img
-                src="./card-images/viktor-zhulin-n7XxYtxp23M-unsplash.jpg"
-                alt="Flowers"
-                class="card__image"
-              />
-              <div class="card__description">
-                <h2 class="card__title">Flowers</h2>
-                <button type="button" class="card__heart-button"></button>
-              </div>
-            </li>
-            <li class="card">
-              <img
-                src="./card-images/mery-khachatryan-479rJrzXXQw-unsplash.jpg"
-                alt="no face to be shown"
-                class="card__image"
-              />
-              <div class="card__description">
-                <h2 class="card__title">No face to be shown</h2>
-                <button type="button" class="card__heart-button"></button>
-              </div>
-            </li>
-          </ul>
+          <ul class="gallery__cards"></ul>
         </section>
       </main>
       <footer class="footer page__section">
         <p class="footer__copyright">&copy; 2023 Around The U.S.</p>
       </footer>
     </div>
-    <div class="modal modal_opened" id="profile-edit-modal">
+    <div class="modal modal_opened">
       <div class="modal__container">
         <button type="button" class="modal__close-button"></button>
         <h2 class="modal__title">Edit profile</h2>
@@ -133,6 +66,15 @@
         </form>
       </div>
     </div>
+    <template id="card-template">
+      <li class="card">
+        <img src="" alt="" class="card__image" />
+        <div class="card__description">
+          <h2 class="card__title"></h2>
+          <button type="button" class="card__heart-button"></button>
+        </div>
+      </li>
+    </template>
     <script src="./scripts/index.js"></script>
   </body>
 </html>
