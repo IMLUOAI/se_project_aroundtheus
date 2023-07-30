@@ -44,8 +44,7 @@ const profileNameInput = document.querySelector("#profile-name-input");
 const profileDescriptionInput = document.querySelector(
   "#profile-description-input"
 );
-const profileModalForm = document.querySelector(".modal__form");
-
+const profileModalForm = document.forms["profile-form"];
 const galleryCardsElement = document.querySelector(".gallery__cards");
 const cardTemplate = document.querySelector("#card-template").content;
 const cardElement = cardTemplate.querySelector(".card").cloneNode(true);
@@ -60,12 +59,17 @@ function handleProfileModalFormSubmit(evt) {
   evt.preventDefault();
   profileTitle.textContent = profileNameInput.value;
   profileDescription.textContent = profileDescriptionInput.value;
+  toggleModal();
 }
 
-function toggleForm() {
+function toggleModal() {
+  modal.classList.toggle("modal_opened");
+}
+
+function handleProfileOpen() {
   profileNameInput.value = profileTitle.textContent;
   profileDescriptionInput.value = profileDescription.textContent;
-  modal.classList.toggle("modal_opened");
+  toggleModal();
 }
 
 function getCardElement(cardData) {
@@ -84,8 +88,8 @@ function getCardElement(cardData) {
 function addCardsToPage(initialCards) {
   const galleryCardsElement = document.querySelector(".gallery__cards");
 
-  profileOpenButton.addEventListener("click", toggleForm);
-  profileCloseButton.addEventListener("click", toggleForm);
+  profileOpenButton.addEventListener("click", handleProfileOpen);
+  profileCloseButton.addEventListener("click", toggleModal);
   profileModalForm.addEventListener("submit", handleProfileModalFormSubmit);
 
   initialCards.forEach((cardData) => {

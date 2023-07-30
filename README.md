@@ -30,3 +30,5 @@ The fonts are downloaded from the giving source of our cource, and only two main
 **Javascript**
 
 Based on the previous project, Javascript starts to embed in this stage. Currently, it's the stage 1 of the Sprint 4, only Arrays and Objects are being use in it for the cards so far.
+
+DOM was primarily used in this project, like the EventListener, handlers, template, etc.
