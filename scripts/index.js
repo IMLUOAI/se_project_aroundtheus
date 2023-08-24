@@ -32,32 +32,39 @@ const initialCards = [
 
 console.log(initialCards);
 
-// profile-Elements
+// button & profile-Elements
 
-const profileOpenButton = document.querySelector("#profile-open-button");
+const profileEditButton = document.querySelector("#profile-open-button");
 const profileCloseButton = document.querySelector(".modal__close-button");
 const modal = document.querySelector(".modal");
 
 const profileTitle = document.querySelector(".profile__title");
 const profileDescription = document.querySelector(".profile__description");
+
+const addNewCardButton = document.querySelector(".profile__plus-button");
+
+// form data
+
 const profileNameInput = document.querySelector("#profile-name-input");
-const profileDescriptionInput = document.querySelector(
-  "#profile-description-input"
-);
+const profileJobInput = document.querySelector("#profile-description-input");
 const profileModalForm = document.querySelector("#edit-profile-form");
+const addCardModalForm = document.querySelector("#add-card-form");
 
 // profile-functions
 
 function handleProfileModalFormSubmit(evt) {
   evt.preventDefault();
   profileTitle.textContent = profileNameInput.value;
-  profileDescription.textContent = profileDescriptionInput.value;
+  profileDescription.textContent = profileJobInput.value;
+  cardTitle.textContent = cardTitleInput.value;
+  closeModal();
 }
 
 function toggleForm() {
   profileNameInput.value = profileTitle.textContent;
-  profileDescriptionInput.value = profileDescription.textContent;
+  profileJobInput.value = profileDescription.textContent;
   modal.classList.toggle("#edit-modal");
+  modal.classList.toggle("#add-card-modal");
 }
 
 // wrapers
@@ -73,8 +80,6 @@ const cardElement = cardTemplate.querySelector(".card").cloneNode(true);
 const cardImage = cardElement.querySelector("card__image");
 const cardTitle = cardElement.querySelector("card__title");
 
-const profilePlusButton = document.querySelector(".profile__plus-button");
-
 // card-functions
 
 function getCardElement(cardData) {
@@ -88,14 +93,16 @@ function getCardElement(cardData) {
   return cardElement;
 }
 
-/* Event Listeners */
+//  event Listener
 
-function addCardsToPage(initialCards) {
-  const galleryCardsElement = document.querySelector(".gallery__cards");
-
-  profileOpenButton.addEventListener("click", toggleForm);
-  profileCloseButton.addEventListener("click", toggleForm);
+  profileCloseButton.addEventListener("click", () => closeModal(editProfileModal));
   profileModalForm.addEventListener("submit", handleProfileModalFormSubmit);
+  profileEditButton.addEventListener("click", () => openModal(editProfileModal));
+  // add new card
+
+  addNewCardButton.addEventListener("click", () => openModal(addCardModal));
+  addCardModalCloseButton.addEventListener("click", () =>
+    closeModal(addCardModal)
 
   initialCards.forEach((cardData) => {
     galleryCardsElement.prepend(getCardElement(cardData));
