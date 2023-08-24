@@ -43,12 +43,16 @@
         <p class="footer__copyright">&copy; 2023 Around The U.S.</p>
       </footer>
     </div>
-    <div class="modal">
+
+    <!-- editProfile-modal -->
+
+    <div class="modal modal_opened" id="edit-modal">
       <div class="modal__container">
-        <button type="button" class="modal__close-button"></button>
+        <button type="button" class="modal__close"></button>
         <h2 class="modal__title">Edit profile</h2>
-        <form class="modal__form" name="profile-form">
+        <form class="modal__form" id="edit-profile-form">
           <input
+          class="modal__input modal__input_type_name" 
             type="text"
             name="name"
             id="profile-name-input"
@@ -66,6 +70,32 @@
         </form>
       </div>
     </div>
+
+    <!-- addCard-modal -->
+
+    <div class="modal modal_opened" id="add-card-modal">
+      <div class="modal__container">
+        <button type="button" class="modal__close"></button>
+        <h2 class="modal__title">New Place</h2>
+        <form class="modal__form" id="add-card-form">
+          <input
+          class="modal__input modal__input_type_title"
+            type="text"
+            name="Title"
+            id="card-title-input"
+            placeholder="Title"
+            required
+          />
+          <input
+            type="text"
+            name="URL"
+            id="card-url-input"
+            placeholder="image-url"
+            required
+          />
+          <button type="submit" class="modal__submit-button">Create</button>
+        </form>
+      </div>
     <template id="card-template">
       <li class="card">
         <img src="" alt="" class="card__image" />

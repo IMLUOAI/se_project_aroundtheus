@@ -7,6 +7,7 @@
 - Images
 - Vectors
 - vendor
+- js/DOM
 
 **Intro**
 
