@@ -51,6 +51,12 @@ const profileDescription = document.querySelector(".profile__description");
 const addNewCardButton = document.querySelector(".profile__plus-button");
 const addCardModalCloseButton = document.querySelector(".modal__close-button");
 const likeButton = document.querySelectorAll(".card__heart-button");
+const imagePopupModal = document.querySelector("#image-popup-modal");
+const imagePopupImage = imagePopupModal.querySelector(".modal__image");
+const imagePopupTitle = imagePopupModal.querySelector(".Modal__image-title");
+const imagePopupCloseButton = document.querySelector(".modal__close-button");
+const modalImage = document.querySelector(".modal__image");
+const cardDeleteButton = document.querySelectorAll(".card__delete-button");
 
 // form data
 
@@ -71,9 +77,11 @@ function openModal(modal) {
 }
 
 function renderCard(cardData, cardsWrap) {
+  const imagePopup = getCardElement(cardData);
   const cardElement = getCardElement(cardData);
   cardsWrap.prepend("cardElement");
 }
+
 function handleProfileModalFormSubmit(evt) {
   evt.preventDefault();
   profileTitle.textContent = profileNameInput.value;
@@ -91,6 +99,20 @@ function handleAddCardModalFormSubmit(evt) {
   renderCard({ name, link }, cardsWrap);
   closeModal(addCardModal);
 }
+
+function openImagePopup(imageSrc, imageAlt, imageTitle) {
+  imagePopupImage.src = imageSrc;
+  imagePopupImage.alt = imageAlt;
+  imagePopupTitle.textContent = imageTitle;
+  // imagePopupModal.classList.add("modal_opened");
+  openModal(imagePopupModal);
+}
+function closeImagePopup() {
+  closeModal(imagePopupModal);
+
+  // imagePopupModal.classList.remove("modal_opened");
+}
+// imagePopupCloseButton.addEventListener("click", closeImagePopup);
 
 const cardTemplate = document.querySelector("#card-template").content;
 const cardElement = cardTemplate.querySelector(".card").cloneNode(true);
@@ -139,4 +161,17 @@ addCardModalCloseButton.addEventListener("click", () => {
 
 initialCards.forEach((cardData) => {
   cardsWrap.prepend(getCardElement(cardData));
+  const cardImageElement = cardElement.querySelector(".card__image");
+  const cardTitleElement = cardElement.querySelector(".card__title");
+
+  cardImageElement.addEventListener("click", () => {
+    const cardName = cardTitleElement.textContent;
+    openImagePopup(cardData.link, cardData.name, cardName);
+  });
 });
+
+// window.addEventListener("click", (event) => {
+//   if (event.target === imagePopupModal) {
+//     modalImage.src = "";
+//   }
+// });

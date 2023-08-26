@@ -52,6 +52,23 @@
     cursor: pointer;
 }
 
+.modal__image {
+    max-width: 75vw;
+    max-height: 75vh;
+}
+
+.modal__image-title {
+    color: #FFF;
+font-family: Inter;
+font-size: 12px;
+font-style: normal;
+font-weight: 400;
+line-height: normal;
+    position: absolute;
+    left:0;
+    bottom:10px;
+}
+
 .modal__title {
     width: 330px;
     height: 23px;

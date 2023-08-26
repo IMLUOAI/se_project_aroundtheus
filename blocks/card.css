@@ -5,36 +5,12 @@
   list-style: none;
  }
 
-.card__image-popup {
+.card__image-container {
     position: relative;
     display: inline-block;
     margin: 0;
 }
 
-.card__image-popup img {
-    max-width: 75vw;
-    max-height: 75vh;
-}
-
-.card__close-button {
-    width: 40px;
-     height: 40px;
-     border: none;
-     background: transparent url("../vectors/Close\ Icon.svg");
-     background-position: center;
-     background-repeat: no-repeat;
-     background-size: cover;
-     transform: rotate(0deg);
-     flex-shrink: 0;
-     position: absolute;
-     right: -48.28px;
-     top: -48.28px;
-}
-
-.card__close-button:hover {
-    opacity:0.5;
-    cursor: pointer;
-}
 
 .card__delete-button {
     width: 18px;
