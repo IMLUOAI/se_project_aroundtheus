@@ -5,13 +5,38 @@
   list-style: none;
  }
 
-.card__image-container {
+.card__image-popup {
     position: relative;
     display: inline-block;
     margin: 0;
 }
 
-.card__trash-button {
+.card__image-popup img {
+    max-width: 75vw;
+    max-height: 75vh;
+}
+
+.card__close-button {
+    width: 40px;
+     height: 40px;
+     border: none;
+     background: transparent url("../vectors/Close\ Icon.svg");
+     background-position: center;
+     background-repeat: no-repeat;
+     background-size: cover;
+     transform: rotate(0deg);
+     flex-shrink: 0;
+     position: absolute;
+     right: -48.28px;
+     top: -48.28px;
+}
+
+.card__close-button:hover {
+    opacity:0.5;
+    cursor: pointer;
+}
+
+.card__delete-button {
     width: 18px;
     height: 19.3px;
     background: url("../vectors/Trash-2.svg") center  no-repeat;
@@ -19,15 +44,16 @@
     top: 18px;
     right: 15px;
     padding: 0;
+    flex-shrink: 0;
 }
 
 
-.card__trash-button:hover {
+.card__delete-button:hover {
     opacity: 0.5;
     cursor: pointer;
 }
 
-.card__trash-button_active {
+.card__delete-button_active {
     background: url("../vectors/Trash.svg");
 }
 

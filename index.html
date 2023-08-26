@@ -88,7 +88,7 @@
             type="text"
             name="URL"
             id="card-url-input"
-            placeholder="Image URL"
+            placeholder="Image Url"
             required
           />
           <button type="submit" class="modal__submit-button">Create</button>
@@ -96,8 +96,9 @@
       </div>
     <template id="card-template">
       <li class="card">
-        <div class="card__image-container">
-        <button type="button" class="card__trash-button"></button>
+        <div class="card__image-popup" id="popup">
+          <button type="button" class="card__close-button"></button> 
+        <button type="button" class="card__delete-button"></button>
         <img src="" alt="" class="card__image" /></div>
         <div class="card__description">
           <h2 class="card__title"></h2>
