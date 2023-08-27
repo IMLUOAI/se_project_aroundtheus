@@ -57,7 +57,7 @@ const imageModal = document.querySelector("#image-modal");
 const modalImageTitle = imageModal.querySelector(".modal__image-title");
 const modalImageCloseButton = imageModal.querySelector(".modal__close-button");
 const modalImage = imageModal.querySelector(".modal__image");
-const cardDeleteButton = document.querySelectorAll(".card__delete-button");
+const cardDeleteButton = cardElement.querySelector(".card__delete-button");
 
 // form data
 
@@ -78,8 +78,8 @@ function openModal(modal) {
 }
 
 function renderCard(cardData, cardsWrap) {
-  const cardImages = getCardElement(cardData);
-  cardsWrap.append(cardImages);
+  const cardTitleElement = getCardElement(cardData);
+  cardsWrap.append(cardTitleElement);
 }
 
 function handleProfileModalFormSubmit(evt) {
@@ -101,15 +101,10 @@ function handleAddCardModalFormSubmit(evt) {
 
 function openImagePopup(imageSrc, imageTitle) {
   modalImage.src = imageSrc;
-  modalImage.alt = imageAlt;
+  modalImage.alt = imageTitle;
   modalImageTitle.textContent = imageTitle;
   openModal(imageModal);
 }
-
-const cardTemplate = document.querySelector("#card-template").content;
-const cardElement = cardTemplate.querySelector(".card").cloneNode(true);
-const cardImageElement = cardElement.querySelector(".card__image");
-const cardTitleElement = cardElement.querySelector(".card__title");
 
 // card-functions
 
@@ -122,7 +117,7 @@ function getCardElement(cardData) {
   cardTitleElement.textContent = cardData.name;
   cardImageElement.alt = cardData.name;
   cardImageElement.src = cardData.link;
-  cardTitleElement.addEventListener("click", () => {
+  cardElement.addEventListener("click", () => {
     openImagePopup(cardData.link, cardData.name);
   });
   likeButton.addEventListener("click", () => {
@@ -157,8 +152,6 @@ addCardModalCloseButton.addEventListener("click", () => {
 initialCards.forEach((cardData) => {
   const cardElement = getCardElement(cardData);
   cardsWrap.append(cardElement);
-  const cardImageElement = cardElement.querySelector(".card__image");
-  const cardTitleElement = cardElement.querySelector(".card__title");
 });
 
 // const cardImages = cardElement.querySelector("card__image");
@@ -178,9 +171,7 @@ modalImageCloseButton.addEventListener("click", () => {
 //     modalImage.src = "";
 //   }
 // });
-// cardDeleteButton.forEach((deleteButton) => {
-//   cardDeleteButton.addEventListener("click", () => {
-//     const card = deleteButton.closest(".card");
-//     cardsWrap.removeChild(".card");
-//   });
-// });
+// cardDeleteButton.forEach((deleteButton) => {});
+cardDeleteButton.addEventListener("click", () => {
+  cardsWrap.removeChild(cardElement);
+});
