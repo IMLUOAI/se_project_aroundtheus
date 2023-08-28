@@ -3,13 +3,8 @@
   display: flex;
   flex-direction: column;
   list-style: none;
+  position: relative;
  }
-
-.card__image-container {
-    position: relative;
-    display: inline-block;
-    margin: 0;
-}
 
 
 .card__delete-button {
