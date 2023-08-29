@@ -47,17 +47,18 @@
      top: -48.28px;
 }
 
+
 .modal__close-button:hover {
     opacity:0.5;
     cursor: pointer;
 }
 
-.modal__image {
+.modal__preview-image {
     max-width: 75vw;
     max-height: 75vh;
 }
 
-.modal__image-title {
+.modal__preview-text {
     color: #FFF;
 font-family: Inter;
 font-size: 12px;
