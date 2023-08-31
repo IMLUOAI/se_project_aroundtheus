@@ -124,7 +124,6 @@ function handleProfileModalFormSubmit(evt) {
 
 function handleAddCardModalFormSubmit(evt) {
   evt.preventDefault();
-  // closeModal(previewImageModal);
   const name = addCardTitleInput.value;
   const link = addCardUrlInput.value;
   renderCard({ name, link }, cardsWrap);
