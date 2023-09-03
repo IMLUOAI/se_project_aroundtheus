@@ -14,10 +14,8 @@
     margin: 0 auto;
 }
 
-@media screen and (max-width: 320px) and (max-width: 768px) {
-.gallery {
-    margin-top: 0;
-}
+@media screen and (max-width: 768px) {
+
 .gallery__cards {
     width: calc(100% - 40px);
     }
