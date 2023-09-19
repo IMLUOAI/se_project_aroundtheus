@@ -1,0 +1,11 @@
+.form__input:valid {
+  border-bottom: 1px solid green;
+}
+
+.form__input:invalid {
+    border-bottom: 1px solid red;
+}
+
+.form_input:hover {
+    border-bottom: 1px solid #000;
+}
