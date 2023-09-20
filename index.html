@@ -55,7 +55,6 @@
             <label class="modal__form-label">
               <input
                 type="text"
-                name="name"
                 class="modal__form-input"
                 id="profile-name-input"
                 placeholder="Name"
@@ -63,11 +62,13 @@
                 maxlength="40"
                 required
               />
+              <span
+                class="modal__form-input-error profile-name-input-error"
+              ></span>
             </label>
             <label class="modal__form-label">
               <input
                 type="text"
-                name="description"
                 class="modal__form-input"
                 id="profile-description-input"
                 placeholder="Description"
@@ -75,6 +76,9 @@
                 maxlength="200"
                 required
               />
+              <span
+                class="modal__form-input-error profile-description-input-error"
+              ></span>
             </label>
             <button type="submit" class="modal__submit-button">Save</button>
           </fieldset>
@@ -105,6 +109,9 @@
                 maxlength="30"
                 required
               />
+              <span
+                class="modal__form-input-error card-title-input-error"
+              ></span>
             </label>
             <label class="modal__form-label">
               <input
@@ -112,9 +119,10 @@
                 name="URL"
                 class="modal__form-input"
                 id="card-url-input"
-                placeholder="Image Url"
+                placeholder="URL"
                 required
               />
+              <span class="modal__form-input-error card-url-input-error"></span>
             </label>
             <button type="submit" class="modal__submit-button">Create</button>
           </fieldset>

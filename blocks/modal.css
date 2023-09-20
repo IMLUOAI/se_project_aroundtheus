@@ -127,10 +127,11 @@ line-height: normal;
 
 .mdoal__form-input:invalid {
     border-bottom: 1px solid red;
+    display: block;
 }
 
-.modal__form-input:hover {
-    border-bottom: 1px solid #000;
+.modal__form-input:focus + .modal__input-error {
+visibility: hidden;
 }
 
 .modal__form-fieldset {
@@ -140,6 +141,19 @@ line-height: normal;
 
 .modal__form-label {
     border: none;
+    padding: 0;
+}
+
+.modal__form-input-error {
+    width: 100%;
+    border: 0;
+    color: #F00;
+font-family: Inter;
+font-size: 12px;
+font-style: normal;
+font-weight: 400;
+line-height: normal;
+margin: 12px 0 0;
 }
 
 .modal__submit-button {
@@ -194,6 +208,10 @@ border: none;
         height: 14px;
         margin:0 0 30px;
         padding: 0 0 11px;
+    }
+    
+    .modal__form-input-error {
+
     }
 
     .modal__submit-button {
