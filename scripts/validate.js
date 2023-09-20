@@ -5,7 +5,6 @@ console.log("hello, julian & Romeo");
 // function enableValidation() {
 //   const formElement= document.querySelectorAll(".modal__form");
 // }
-
 const config = {
   formSelector: ".modal__form",
   inputSelector: ".modal__form-input",
@@ -14,6 +13,25 @@ const config = {
   inputErrorClass: ".modal__form-input-error",
   errorClass: ".modal__form-input-error_visible",
 };
+
+function initializeValidation() {
+  const formElements = document.querySelectorAll(".modal__form");
+  formElements.forEach((formElement) => {
+    formElement.setAttribute("disabled", true);
+  });
+
+  const inputElements = document.querySelectorAll(".modal__form-input");
+  inputElements.forEach((inputElement) => {
+    inputElement.addEventListener("focus", () => {
+      inputElement.closest(".modal__form").removeAttribute("disabled");
+    });
+
+    inputElement.addEventListener("blur", () => {
+      inputElement.closest(".modal__form").setAttribute("disabled", true);
+    });
+  });
+}
+initializeValidation();
 
 const enableValidation = (config) => {
   const formList = Array.from(document.querySelectorAll(config.formSelector));
