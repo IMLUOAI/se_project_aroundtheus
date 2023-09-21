@@ -102,7 +102,14 @@ line-height: normal;
     margin: 54px 36px 36.51px;
 }
 
-.modal__form-input {
+.modal__label {
+    width: 100%;
+    border: none;
+    padding: 0;
+    position: relative;
+}
+
+.modal__input {
     width: 358px;
     height: 14px;
     color: #000;
@@ -117,35 +124,24 @@ line-height: normal;
     border-bottom: 1px solid rgba(0, 0, 0, 0.2);
 }
 
-.modal__form-input::placeholder {
+.modal__input::placeholder {
     color: #000;
 }
 
-.modal__form-input:valid {
+.modal__input:valid {
   border-bottom: 1px solid green;
 }
 
-.mdoal__form-input:invalid {
+.modal__input:invalid {
     border-bottom: 1px solid red;
     display: block;
 }
 
-.modal__form-input:focus + .modal__input-error {
-visibility: hidden;
-}
 
-.modal__form-fieldset {
-    padding: 0;
-    border: none;
-}
-
-.modal__form-label {
-    border: none;
-    padding: 0;
-}
-
-.modal__form-input-error {
-    width: 100%;
+.modal__input_type_error {
+    position: absolute;
+    left: 0;
+    bottom: -5px;
     border: 0;
     color: #F00;
 font-family: Inter;
@@ -153,7 +149,6 @@ font-size: 12px;
 font-style: normal;
 font-weight: 400;
 line-height: normal;
-margin: 12px 0 0;
 }
 
 .modal__submit-button {
@@ -170,6 +165,11 @@ font-weight: 400;
 line-height: normal;
 margin: 18.26px 0 0;
 border: none;
+}
+
+.modal__submit-button:disabled {
+    opacity: 0.2;
+    cursor: pointer;
 }
 
 .modal__submit-button:hover {
@@ -203,15 +203,11 @@ border: none;
         padding: 0;
     }
 
-    .modal__form-input {
+    .modal__input {
         width: 238px;
         height: 14px;
         margin:0 0 30px;
         padding: 0 0 11px;
-    }
-    
-    .modal__form-input-error {
-
     }
 
     .modal__submit-button {

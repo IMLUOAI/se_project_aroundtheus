@@ -75,6 +75,11 @@ function closeModal(modal) {
 
 function openModal(modal) {
   modal.classList.add("modal_opened");
+  document.addEventListener("keyup", (e) => {
+    if (e.key === "Escape") {
+      closeModal(modal);
+    }
+  });
 }
 
 function renderCard(cardData, cardsWrap) {

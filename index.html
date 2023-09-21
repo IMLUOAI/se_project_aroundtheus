@@ -50,38 +50,44 @@
           id="profile-modal-closed"
         ></button>
         <h2 class="modal__title">Edit profile</h2>
-        <form class="modal__form" id="profile-form" novalidate>
-          <fieldset class="modal__form-fieldset">
-            <label class="modal__form-label">
-              <input
-                type="text"
-                class="modal__form-input"
-                id="profile-name-input"
-                placeholder="Name"
-                minlenth="2"
-                maxlength="40"
-                required
-              />
-              <span
-                class="modal__form-input-error profile-name-input-error"
-              ></span>
-            </label>
-            <label class="modal__form-label">
-              <input
-                type="text"
-                class="modal__form-input"
-                id="profile-description-input"
-                placeholder="Description"
-                minlength="2"
-                maxlength="200"
-                required
-              />
-              <span
-                class="modal__form-input-error profile-description-input-error"
-              ></span>
-            </label>
-            <button type="submit" class="modal__submit-button">Save</button>
-          </fieldset>
+        <form class="modal__form" id="profile-form" novalidate disabled>
+          <label class="modal__label">
+            <input
+              type="text"
+              class="modal__input"
+              id="profile-name-input"
+              placeholder="Name"
+              minlength="2"
+              maxlength="40"
+              required
+            />
+            <span
+              class="modal__input_type_error"
+              id="profile-name-input-error"
+            ></span>
+          </label>
+          <label class="modal__label">
+            <input
+              type="text"
+              class="modal__input"
+              id="profile-description-input"
+              placeholder="Description"
+              minlength="2"
+              maxlength="200"
+              required
+            />
+            <span
+              class="modal__input_type_error"
+              id="profile-description-input-error"
+            ></span>
+          </label>
+          <button
+            type="submit"
+            class="modal__submit-button modal__submit-button_disabled"
+            disabled
+          >
+            Save
+          </button>
         </form>
       </div>
     </div>
@@ -96,36 +102,44 @@
           id="add-card-modal-closed"
         ></button>
         <h2 class="modal__title">New Place</h2>
-        <form class="modal__form" id="card-form" novalidate>
-          <fieldset class="modal__form-fieldset">
-            <label class="modal__form-label">
-              <input
-                type="text"
-                name="Title"
-                class="modal__form-input"
-                id="card-title-input"
-                placeholder="Title"
-                minlength="1"
-                maxlength="30"
-                required
-              />
-              <span
-                class="modal__form-input-error card-title-input-error"
-              ></span>
-            </label>
-            <label class="modal__form-label">
-              <input
-                type="text"
-                name="URL"
-                class="modal__form-input"
-                id="card-url-input"
-                placeholder="URL"
-                required
-              />
-              <span class="modal__form-input-error card-url-input-error"></span>
-            </label>
-            <button type="submit" class="modal__submit-button">Create</button>
-          </fieldset>
+        <form class="modal__form" id="card-form" novalidate disabled>
+          <label class="modal__label">
+            <input
+              type="text"
+              name="Title"
+              class="modal__input"
+              id="card-title-input"
+              placeholder="Title"
+              minlength="1"
+              maxlength="30"
+              required
+            />
+            <span
+              class="modal__input_type_error"
+              id="card-title-input-error"
+            ></span>
+          </label>
+          <label class="modal__label">
+            <input
+              type="text"
+              name="URL"
+              class="modal__input"
+              id="card-url-input"
+              placeholder="URL"
+              required
+            />
+            <span
+              class="modal__input_type_error"
+              id="card-url-input-error"
+            ></span>
+          </label>
+          <button
+            type="submit"
+            class="modal__submit-button modal__submit-button_disabled"
+            disabled
+          >
+            Create
+          </button>
         </form>
       </div>
     </div>
