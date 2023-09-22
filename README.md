@@ -8,6 +8,8 @@
 - Vectors
 - vendor
 - js/DOM
+- validate.js
+- form API
 
 **Intro**
 

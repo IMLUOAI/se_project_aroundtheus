@@ -126,6 +126,7 @@ line-height: normal;
 
 .modal__input::placeholder {
     color: #000;
+    opacity: 0.2;
 }
 
 .modal__input:valid {
@@ -138,17 +139,25 @@ line-height: normal;
 }
 
 
-.modal__input_type_error {
+.modal__error {
     position: absolute;
+    top: 29.74px;
     left: 0;
-    bottom: -5px;
-    border: 0;
     color: #F00;
 font-family: Inter;
 font-size: 12px;
 font-style: normal;
 font-weight: 400;
 line-height: normal;
+}
+
+.modal__error_visible {
+  opacity: 1;
+  position: absolute;
+}
+
+.modal__input_type_error {
+    border-bottom: 1px solid #ff0000;
 }
 
 .modal__submit-button {
@@ -167,7 +176,7 @@ margin: 18.26px 0 0;
 border: none;
 }
 
-.modal__submit-button:disabled {
+.modal__submit-button_disabled {
     opacity: 0.2;
     cursor: pointer;
 }
