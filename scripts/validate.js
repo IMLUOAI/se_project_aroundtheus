@@ -13,18 +13,19 @@ const enableValidation = (options) => {
     formElement.addEventListener("submit", function (evt) {
       evt.preventDefault();
     });
+    setEventListeners(formElement, options);
   });
 };
 
 const showInputError = (formElement, inputElement, options) => {
-  const errorElement = formElement.querySelector(`.${inputElement.id}-error`);
+  const errorElement = formElement.querySelector(`#${inputElement.id}-error`);
   inputElement.classList.add(options.inputErrorClass);
   errorElement.textContent = inputElement.validationMessage;
   errorElement.classList.add(options.errorClass);
 };
 
 const hideInputError = (formElement, inputElement, options) => {
-  const errorElement = formElement.querySelector(`.${inputElement.id}-error`);
+  const errorElement = formElement.querySelector(`#${inputElement.id}-error`);
   inputElement.classList.remove(options.inputErrorClass);
   errorElement.classList.remove(options.errorClass);
   // errorElement.textContent= "";                                                                                                                                          = "";

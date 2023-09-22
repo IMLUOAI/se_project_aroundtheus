@@ -80,6 +80,11 @@ function openModal(modal) {
       closeModal(modal);
     }
   });
+  modal.addEventListener("click", (e) => {
+    if (e.target === modal) {
+      closeModal(modal);
+    }
+  });
 }
 
 function renderCard(cardData, cardsWrap) {
