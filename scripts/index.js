@@ -90,12 +90,6 @@ function closeWithEsc(evt) {
 function openModal(modal) {
   modal.classList.add("modal_opened");
   document.addEventListener("keydown", closeWithEsc);
-  if (modal === editProfileModal) {
-    profileTitle.textContent = profileNameInput.value;
-    profileDescription.textContent = profileJobInput.value;
-  }
-  profileForm.reset();
-  cardForm.reset();
 }
 
 function renderCard(cardData, cardsWrap) {
