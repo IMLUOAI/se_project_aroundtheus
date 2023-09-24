@@ -72,24 +72,25 @@ const previewImageCloseButton = document.querySelector("#preview-image-closed");
 function closeModal(modal) {
   modal.classList.remove("modal_opened");
   document.removeEventListener("keydown", closeWithEsc);
+  modal.removeEventListener("mousedown", closeWithMouse);
 }
 
 function closeWithEsc(evt) {
   if (evt.key === "Escape") {
-    const openedModal = document.querySelector(".modal_opened");
-    closeModal(openedModal);
+    const openModal = document.querySelector(".modal_opened");
+    closeModal(openModal);
   }
-  document.addEventListener("mousedown", (e) => {
-    const openedModal = document.querySelector(".modal_opened");
-    if (e.target === openedModal) {
-      closeModal(openedModal);
-    }
-  });
+}
+function closeWithMouse(e) {
+  if (e.target.classList.contains("modal_opened")) {
+    closeModal(e.target);
+  }
 }
 
 function openModal(modal) {
   modal.classList.add("modal_opened");
   document.addEventListener("keydown", closeWithEsc);
+  modal.addEventListener("mousedown", closeWithMouse);
 }
 
 function renderCard(cardData, cardsWrap) {
