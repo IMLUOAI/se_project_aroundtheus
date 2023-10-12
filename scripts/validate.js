@@ -1,4 +1,4 @@
-const config = {
+/*  const config = {
   formSelector: ".modal__form",
   inputSelector: ".modal__input",
   submitButtonSelector: ".modal__submit-button",
@@ -72,4 +72,4 @@ const setEventListeners = (formElement, options) => {
   });
 };
 
-enableValidation(config);
+enableValidation(config); */

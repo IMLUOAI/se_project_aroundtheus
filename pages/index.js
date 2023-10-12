@@ -1,3 +1,7 @@
+
+import Card from "./Card.js";
+import FormValidator from "./FormValidator.js";
+
 const initialCards = [
   {
     name: "Lonely Earth",
@@ -31,6 +35,15 @@ const initialCards = [
 ];
 
 console.log(initialCards);
+
+// Card.js
+
+const data = {
+  name: "Lonely Earth",
+    link: "https://images.unsplash.com/photo-1507499739999-097706ad8914?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=689&q=80",
+};
+
+const card = new Card(data);
 
 // Query Selectors
 
