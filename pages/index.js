@@ -1,6 +1,6 @@
 
-import Card from "./Card.js";
-import FormValidator from "./FormValidator.js";
+import Card from "../components/Card.js";
+import FormValidator from "../components/FormValidator.js";
 
 const initialCards = [
   {
@@ -38,12 +38,40 @@ console.log(initialCards);
 
 // Card.js
 
-const data = {
+const cardData = {
   name: "Lonely Earth",
     link: "https://images.unsplash.com/photo-1507499739999-097706ad8914?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=689&q=80",
 };
 
-const card = new Card(data);
+function createCard(cardData, cardSelector, handleImageClick) {
+const card = new Card(cardData);
+return card.getELement();
+}
+
+function handImageClick(name, link) {
+  modalImage.src = link;
+  modalImage.alt = name;
+  modalImageCaption.textContent = name;
+  openModal(imageModal);
+}
+
+const options = {
+  formSelector: ".modal__form",
+  inputSelector: ".modal__input",
+  submitButtonSelector: ".modal__submit-button",
+  inactiveButtonClass: "modal__submit-button_disabled",
+  inputErrorClass: "modal__input_type_error",
+  errorClass: "modal__error_visible",
+};
+
+
+const addCardFormValidator = new FormValidator(options, cardForm);
+addCardFormValidator.enableValidation();
+
+const editProfileFormValidator = new FormValidator(options, profileForm);
+editProfileFormValidator.enableValidation();
+
+
 
 // Query Selectors
 
@@ -165,6 +193,7 @@ profileForm.addEventListener("submit", handleProfileModalFormSubmit);
 profileEditButton.addEventListener("click", () => {
   profileNameInput.value = profileTitle.textContent;
   profileJobInput.value = profileDescription.textContent;
+  editProfileFormValidator.toggleButtonState();
   openModal(editProfileModal);
 });
 
@@ -175,6 +204,7 @@ profileCloseButton.addEventListener("click", () =>
 cardForm.addEventListener("submit", handleAddCardModalFormSubmit);
 
 addNewCardButton.addEventListener("click", () => {
+  addCardFormValidator.toggleButtonState();
   openModal(addCardModal);
 });
 

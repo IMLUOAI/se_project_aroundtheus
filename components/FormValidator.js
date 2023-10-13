@@ -1,17 +1,17 @@
 
 export default class FormValidator {
-  constructor(option, formElement) {
-    this._formSelector = option.formSelector;
-    this._inputSelector = option.inputSelector;
-    this._submitButtonSelector = option.submitButtonSelector;
-    this._inactiveButtonClass = option.inactiveButtonClass;
-    this._inputErrorClass = option.inputErrorClass;
-    this._errorClass = option.errorClass;
+  constructor(options, formElement) {
+    this._formSelector = options.formSelector;
+    this._inputSelector = options.inputSelector;
+    this._submitButtonSelector = options.submitButtonSelector;
+    this._inactiveButtonClass = options.inactiveButtonClass;
+    this._inputErrorClass = options.inputErrorClass;
+    this._errorClass = options.errorClass;
     this._formElement = formElement;
   }
   
    enableValidation = () => {
-      this._formElement.addEventListener("submit", function (evt) {
+      this._formElement.addEventListener("submit", (evt) => {
         evt.preventDefault();
       });
       this._setEventListeners();
@@ -45,11 +45,9 @@ export default class FormValidator {
   };
   
   _toggleButtonState = (
-    inputList,
-    submitButton,
-    { inactiveButtonClass }
+    inputList
   ) => {
-    if (hasInvalidInput(inputList)) {
+    if (this._hasInvalidInput(inputList)) {
       this._submitButton.classList.add(this._inactiveButtonClass);
       this._submitButton.disabled = true;
     } else {
@@ -63,12 +61,12 @@ export default class FormValidator {
       this._formElement.querySelectorAll(this._inputSelector)
     );
     this._submitButton = this._formElement.querySelector(this._submitButtonSelector);
-    this._toggleButtonState(this._inputList);
+    this._toggleButtonState(inputList);
   
     this._inputList.forEach((inputElement) => {
-      inputElement.addEventListener("input", function () {
+      inputElement.addEventListener("input",  () => {
         this._checkInputValidity(inputElement);
-        this._toggleButtonState(this._inputList);
+        this._toggleButtonState(inputList);
       });
     });
   };
