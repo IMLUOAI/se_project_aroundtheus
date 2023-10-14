@@ -41,11 +41,12 @@ export default class FormValidator {
   };
   
   _hasInvalidInput = (inputList) => {
+
     return !inputList.every((inputElement) => inputElement.validity.valid);
   };
   
-  _toggleButtonState = (inputList) => {
-    if (this._hasInvalidInput(inputList)) {
+  toggleButtonState = (inputList) => {
+    if (this._hasInvalidInput(inputList ?? this._inputList)) {
       this._submitButton.classList.add(this._inactiveButtonClass);
       this._submitButton.disabled = true;
     } else {
@@ -59,12 +60,12 @@ export default class FormValidator {
       this._formElement.querySelectorAll(this._inputSelector)
     );
     this._submitButton = this._formElement.querySelector(this._submitButtonSelector);
-    // this._toggleButtonState(inputList);
+    this._toggleButtonState(inputList); //this function shoulod be called after you open modal window and fill it's inputs with data
     this._inputList = inputList;
     this._inputList.forEach((inputElement) => {
       inputElement.addEventListener("input",  () => {
         this._checkInputValidity(inputElement);
-        // this._toggleButtonState(inputList);
+        this.toggleButtonState(inputList);
       });
     });
   };

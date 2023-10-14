@@ -194,7 +194,7 @@ profileForm.addEventListener("submit", handleProfileModalFormSubmit);
 profileEditButton.addEventListener("click", () => {
   profileNameInput.value = profileTitle.textContent;
   profileJobInput.value = profileDescription.textContent;
-  // editProfileFormValidator.toggleButtonState();
+  editProfileFormValidator.toggleButtonState();
   openModal(editProfileModal);
 });
 
@@ -205,7 +205,7 @@ profileCloseButton.addEventListener("click", () =>
 cardForm.addEventListener("submit", handleAddCardModalFormSubmit);
 
 addNewCardButton.addEventListener("click", () => {
-  // addCardFormValidator.toggleButtonState();
+  addCardFormValidator.toggleButtonState();
   openModal(addCardModal);
 });
 
