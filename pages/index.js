@@ -65,10 +65,14 @@ const options = {
 };
 
 
-const addCardFormValidator = new FormValidator(options, cardForm);
+const addCardForm = document.forms["card-form"];
+
+const editProfileForm = document.forms["profile-form"];
+
+const addCardFormValidator = new FormValidator(options, addCardForm);
 addCardFormValidator.enableValidation();
 
-const editProfileFormValidator = new FormValidator(options, profileForm);
+const editProfileFormValidator = new FormValidator(options, editProfileForm);
 editProfileFormValidator.enableValidation();
 
 

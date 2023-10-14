@@ -13,7 +13,7 @@ export default class Card {
     const cardElement = document.querySelector(this._cardSelector).content.firstElementChild.cloneNode(true);
     return cardElement();
   }
-  
+
   _setEventListeners() {
     this._cardElement.querySelector(".card__heart-button").addEventListener("click", () => 
        this._handleLikeButton()
@@ -40,7 +40,7 @@ export default class Card {
 const cardImageElement = this._cardElement.querySelector(".card__image");
 const cardTitleElement = this._cardElement.querySelector(".card__title");
 
-cardImageElement.style.backgroundImage = `url(${this._link})`;
+cardImageElement.src = `url(${this._link})`;
 cardTitleElement.textContent = this._name;
 this._setEventListeners();
 
