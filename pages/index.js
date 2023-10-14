@@ -43,10 +43,7 @@ const cardData = {
     link: "https://images.unsplash.com/photo-1507499739999-097706ad8914?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=689&q=80",
 };
 
-function createCard(cardData, cardSelector, handleImageClick) {
 const card = new Card(cardData);
-return card.getELement();
-}
 
 function handImageClick(name, link) {
   modalImage.src = link;
@@ -197,7 +194,7 @@ profileForm.addEventListener("submit", handleProfileModalFormSubmit);
 profileEditButton.addEventListener("click", () => {
   profileNameInput.value = profileTitle.textContent;
   profileJobInput.value = profileDescription.textContent;
-  editProfileFormValidator.toggleButtonState();
+  // editProfileFormValidator.toggleButtonState();
   openModal(editProfileModal);
 });
 
@@ -208,7 +205,7 @@ profileCloseButton.addEventListener("click", () =>
 cardForm.addEventListener("submit", handleAddCardModalFormSubmit);
 
 addNewCardButton.addEventListener("click", () => {
-  addCardFormValidator.toggleButtonState();
+  // addCardFormValidator.toggleButtonState();
   openModal(addCardModal);
 });
 
