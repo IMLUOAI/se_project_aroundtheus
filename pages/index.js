@@ -34,23 +34,8 @@ const initialCards = [
   },
 ];
 
-console.log(initialCards);
 
 // Card.js
-
-const cardData = {
-  name: "Lonely Earth",
-    link: "https://images.unsplash.com/photo-1507499739999-097706ad8914?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=689&q=80",
-};
-
-const card = new Card(cardData);
-
-function handImageClick(name, link) {
-  modalImage.src = link;
-  modalImage.alt = name;
-  modalImageCaption.textContent = name;
-  openModal(imageModal);
-}
 
 const options = {
   formSelector: ".modal__form",
@@ -97,7 +82,7 @@ const addCardUrlInput = cardForm.querySelector("#card-url-input");
 
 const previewImageModal = document.querySelector("#preview-image-modal");
 const previewImage = previewImageModal.querySelector(".modal__preview-image");
-const previewImageText = previewImageModal.querySelector(
+const previewImageCaption = previewImageModal.querySelector(
   ".modal__preview-text"
 );
 
@@ -135,42 +120,24 @@ function openModal(modal) {
   modal.addEventListener("mousedown", closeWithMouse);
 }
 
+function createCard(cardData) {
+  const card = new Card(cardData, "#card-template", handleImageClick);
+  return card.getCard();
+}
+
 function renderCard(cardData, cardsWrap) {
-  const cardElement = getCardElement(cardData);
+  const cardElement = createCard(cardData);
   cardsWrap.prepend(cardElement);
 }
 
-function getCardElement(cardData) {
-  const cardElement = cardTemplate.cloneNode(true);
-  const cardImageElement = cardElement.querySelector(".card__image");
-  const cardTitleElement = cardElement.querySelector(".card__title");
-  const likeButton = cardElement.querySelector(".card__heart-button");
-
-  likeButton.addEventListener("click", () => {
-    likeButton.classList.toggle("card__heart-button_active");
-  });
-
-  const cardDeleteButton = cardElement.querySelector(".card__delete-button");
-
-  cardDeleteButton.addEventListener("click", () => {
-    cardElement.remove();
-  });
-
-  cardImageElement.addEventListener("click", () => {
-    previewImage.src = cardData.link;
-    previewImage.alt = cardData.name;
-    previewImageText.textContent = cardData.name;
-    openModal(previewImageModal);
-  });
-
-  cardTitleElement.textContent = cardData.name;
-  cardImageElement.alt = cardData.name;
-  cardImageElement.src = cardData.link;
-
-  return cardElement;
-}
-
 // Event Handlers
+
+function handleImageClick(name, link) {
+  previewImage.src = link;
+  previewImage.alt = name;
+  previewImageCaption.textContent = name;
+  openModal(previewImageModal);
+}
 
 function handleProfileModalFormSubmit(evt) {
   evt.preventDefault();
@@ -218,3 +185,7 @@ previewImageCloseButton.addEventListener("click", () =>
 );
 
 initialCards.forEach((cardData) => renderCard(cardData, cardsWrap));
+ 
+
+
+
