@@ -122,7 +122,7 @@ function openModal(modal) {
 
 function createCard(cardData) {
   const card = new Card(cardData, "#card-template", handleImageClick);
-  return card.getCard();
+  return card.getView();
 }
 
 function renderCard(cardData, cardsWrap) {
