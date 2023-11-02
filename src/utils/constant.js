@@ -1,4 +1,5 @@
 import { userSetter } from "core-js/fn/symbol";
+import Section from "../components/Section";
 import UserInfo from "../components/UserInfo";
 
 export const initialCards = [
@@ -57,10 +58,7 @@ export const editProfileFormValidator = new FormValidator(
 );
 editProfileFormValidator.enableValidation();
 
-export const Section = new Section(
-  { items: data, renderer: renderCard },
-  "containerSelector"
-);
+
 
 export const previewImagePopup = new PopupWithImage(
   "#preview-image-modal",
@@ -71,7 +69,7 @@ previewImagePopup.setEventListeners();
 export const PopupWithForm = new PopupWithForm("#edit-modal", (formData) => {});
 PopupWithForm.setEventListeners();
 
-export const UserInfo = new UserInfo({
+export const userInfo = new UserInfo({
   nameSelector: ".profile__name",
   jobSelector: ".profile__job",
 });

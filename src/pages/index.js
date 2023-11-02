@@ -1,11 +1,19 @@
-import Card from "./src/components/Card.js";
-import FormValidator from "./src/components/FormValidator.js";
-import Section from "./src/components/Section.js";
-import Popup from "./src/components/Popup.js";
+import Card from "../components/Card.js";
+import FormValidator from "../components/FormValidator.js";
+import Section from "../components/constant.js";
+import PopupWithForm from "../components/Popup.js";
+import PopupWithImage from "../components/Popup.js";
+import Popup from "../components/Popup.js";
 import initialCards from "../utils/constant.js";
-import "./src/pages/index.css";
+import "../pages/index.css";
 import UserInfo from "../components/UserInfo.js";
+import Section from "../components/Section.js";
 // Functions
+
+const section = new Section(
+  { items: data, renderer: renderCard },
+  ".gallery__cards"
+);
 
 function closeModal(modal) {
   modal.classList.remove("modal_opened");
