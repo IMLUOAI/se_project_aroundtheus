@@ -8,21 +8,23 @@
     />
     <meta content="ie=edge" http-equiv="X-UA-Compatible" />
     <title>Around the U.S.</title>
-    <link href="./pages/index.css" rel="stylesheet" />
   </head>
   <body class="page">
     <div class="page__content">
       <header class="header page__section">
         <img
           class="header__logo"
-          src="./vectors/logo.svg"
+          src="<%=require('./src/vectors/logo.svg')%>"
           alt="Around the U.S. logo"
         />
       </header>
       <main class="content">
         <section class="profile page__section">
           <div class="profile__avatar">
-            <img src="./vectors/jacques-cousteau.svg" alt="avtar" />
+            <img
+              src="<%=require('.src/vectors/jacques-cousteau.svg')%>"
+              alt="avtar"
+            />
           </div>
           <div class="profile__info">
             <h1 class="profile__title">Jacques Cousteau</h1>
@@ -159,7 +161,5 @@
         </div>
       </li>
     </template>
-    <!-- scripts -->
-     <script type="module" src="./pages/index.js" defer></script>
   </body>
 </html>

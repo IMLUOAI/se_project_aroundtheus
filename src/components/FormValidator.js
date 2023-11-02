@@ -22,7 +22,7 @@ export default class FormValidator {
         this._checkInputValidity(inputElement);
         this.toggleButtonState();
       });
-    });
+    });›
   };
 
   _showInputError = (inputElement) => {
