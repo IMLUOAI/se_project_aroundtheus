@@ -1,7 +1,3 @@
-import { userSetter } from "core-js/fn/symbol";
-import Section from "../components/Section";
-import UserInfo from "../components/UserInfo";
-
 export const initialCards = [
   {
     name: "Lonely Earth",
@@ -34,8 +30,6 @@ export const initialCards = [
   },
 ];
 
-// Card.js
-
 export const options = {
   formSelector: ".modal__form",
   inputSelector: ".modal__input",
@@ -44,82 +38,3 @@ export const options = {
   inputErrorClass: "modal__input_type_error",
   errorClass: "modal__error_visible",
 };
-
-export const addCardForm = document.forms["card-form"];
-
-export const editProfileForm = document.forms["profile-form"];
-
-export const addCardFormValidator = new FormValidator(options, addCardForm);
-addCardFormValidator.enableValidation();
-
-export const editProfileFormValidator = new FormValidator(
-  options,
-  editProfileForm
-);
-editProfileFormValidator.enableValidation();
-
-
-
-export const previewImagePopup = new PopupWithImage(
-  "#preview-image-modal",
-  (formData) => {}
-);
-previewImagePopup.setEventListeners();
-
-export const PopupWithForm = new PopupWithForm("#edit-modal", (formData) => {});
-PopupWithForm.setEventListeners();
-
-export const userInfo = new UserInfo({
-  nameSelector: ".profile__name",
-  jobSelector: ".profile__job",
-});
-
-export const user = userInfo.getUserInfo();
-userInfo.setUserInfo({ name: "new name", job: "new job" });
-
-export const cardsWrap = document.querySelector(".gallery__cards");
-export const cardTemplate =
-  document.querySelector("#card-template").content.firstElementChild;
-
-export const editProfileModal = document.querySelector("#edit-modal");
-export const profileTitle = document.querySelector(".profile__title");
-export const profileDescription = document.querySelector(
-  ".profile__description"
-);
-export const profileEditButton = document.querySelector(
-  ".profile__edit-button"
-);
-
-export const profileForm = document.forms["profile-form"];
-export const profileNameInput = profileForm.querySelector(
-  "#profile-name-input"
-);
-export const profileJobInput = profileForm.querySelector(
-  "#profile-description-input"
-);
-
-export const addCardModal = document.querySelector("#add-card-modal");
-export const addNewCardButton = document.querySelector(".profile__plus-button");
-export const cardForm = document.forms["card-form"];
-export const addCardTitleInput = cardForm.querySelector("#card-title-input");
-export const addCardUrlInput = cardForm.querySelector("#card-url-input");
-
-export const previewImageModal = document.querySelector("#preview-image-modal");
-export const previewImage = previewImageModal.querySelector(
-  ".modal__preview-image"
-);
-export const previewImageCaption = previewImageModal.querySelector(
-  ".modal__preview-text"
-);
-
-//  Query Selectors for Close Buttons
-
-export const profileCloseButton = document.querySelector(
-  "#profile-modal-closed"
-);
-export const addCardModalCloseButton = addCardModal.querySelector(
-  "#add-card-modal-closed"
-);
-export const previewImageCloseButton = document.querySelector(
-  "#preview-image-closed"
-);
