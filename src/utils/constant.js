@@ -38,3 +38,51 @@ export const options = {
   inputErrorClass: "modal__input_type_error",
   errorClass: "modal__error_visible",
 };
+
+export const cardsWrap = document.querySelector(".gallery__cards");
+export const cardTemplate =
+  document.querySelector("#card-template").content.firstElementChild;
+
+export const editProfileModal = document.querySelector("#edit-modal");
+export const profileTitle = document.querySelector(".profile__title");
+export const profileDescription = document.querySelector(
+  ".profile__description"
+);
+export const profileEditButton = document.querySelector(
+  ".profile__edit-button"
+);
+
+export const profileForm = document.forms["profile-form"];
+export const profileNameInput = profileForm.querySelector(
+  "#profile-name-input"
+);
+export const profileJobInput = profileForm.querySelector(
+  "#profile-description-input"
+);
+
+export const addCardModal = document.querySelector("#add-card-modal");
+export const addNewCardButton = document.querySelector(".profile__plus-button");
+
+export const cardForm = document.forms["card-form"];
+export const addCardTitleInput = cardForm.querySelector("#card-title-input");
+export const addCardUrlInput = cardForm.querySelector("#card-url-input");
+
+export const previewImageModal = document.querySelector("#preview-image-modal");
+export const previewImage = previewImageModal.querySelector(
+  ".modal__preview-image"
+);
+export const previewImageCaption = previewImageModal.querySelector(
+  ".modal__preview-text"
+);
+
+//  Query Selectors for Close Buttons
+
+export const profileCloseButton = document.querySelector(
+  "#profile-modal-closed"
+);
+export const addCardModalCloseButton = addCardModal.querySelector(
+  "#add-card-modal-closed"
+);
+export const previewImageCloseButton = document.querySelector(
+  "#preview-image-closed"
+);

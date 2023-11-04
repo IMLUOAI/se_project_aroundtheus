@@ -20,7 +20,7 @@ export default class Popup {
 
   setEventListeners() {
     this._popupElement.addEventListener("click", (event) => {
-      if (event.target === this._popupElement) {
+      if (event.target.classList.contains("modal__opened")) {
         this.close();
       }
     });

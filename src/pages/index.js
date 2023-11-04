@@ -5,7 +5,30 @@ import PopupWithImage from "../components/PopupWithImage";
 import "../pages/index.css";
 import UserInfo from "../components/UserInfo.js";
 import Section from "../components/Section.js";
-import { initialCards, options } from "../utils/constant.js";
+import {
+  initialCards,
+  options,
+  cardsWrap,
+  cardTemplate,
+  editProfileModal,
+  profileTitle,
+  profileDescription,
+  profileEditButton,
+  profileNameInput,
+  profileJobInput,
+  addCardModal,
+  addNewCardButton,
+  addCardTitleInput,
+  addCardUrlInput,
+  previewImageModal,
+  previewImage,
+  previewImageCaption,
+  profileCloseButton,
+  addCardModalCloseButton,
+  previewImageCloseButton,
+  cardForm,
+  profileForm,
+} from "../utils/constant.js";
 
 // Functions
 
@@ -22,12 +45,10 @@ const section = new Section(
 section.renderItems();
 
 const addCardForm = document.forms["card-form"];
-
-const editProfileForm = document.forms["profile-form"];
-
 const addCardFormValidator = new FormValidator(options, addCardForm);
 addCardFormValidator.enableValidation();
 
+const editProfileForm = document.forms["profile-form"];
 const editProfileFormValidator = new FormValidator(options, editProfileForm);
 editProfileFormValidator.enableValidation();
 
@@ -35,62 +56,20 @@ const imagePopup = new PopupWithImage("#preview-image-modal");
 imagePopup.setEventListeners();
 
 const addCardPopup = new PopupWithForm(
-  addCardSelector,
+  "#add-modal",
   handleAddCardModalFormSubmit
 );
-function newPlace() {
-  addCardPopup.open();
-}
 addCardPopup.setEventListeners();
 
-const editProfilePopup = new PopupWithForm(
-  editProfileSelector,
-  handleProfileModalFormSubmit
-);
-function editInfo() {
-  editProfilePopup.open();
-}
+const editProfilePopup = new PopupWithForm("#edit-profile-modal", (values) => {
+  userInfo.setUserInfo(values);
+});
 editProfilePopup.setEventListeners();
 
 const userInfo = new UserInfo({
   nameSelector: "#profile-name-input",
   jobSelector: "#profile-description-input",
 });
-const user = userInfo.getUserInfo();
-userInfo.setUserInfo({ name: "New Name", job: "New Job" });
-
-const cardsWrap = document.querySelector(".gallery__cards");
-const cardTemplate =
-  document.querySelector("#card-template").content.firstElementChild;
-
-const editProfileModal = document.querySelector("#edit-modal");
-const profileTitle = document.querySelector(".profile__title");
-const profileDescription = document.querySelector(".profile__description");
-const profileEditButton = document.querySelector(".profile__edit-button");
-
-const profileForm = document.forms["profile-form"];
-const profileNameInput = profileForm.querySelector("#profile-name-input");
-const profileJobInput = profileForm.querySelector("#profile-description-input");
-
-const addCardModal = document.querySelector("#add-card-modal");
-const addNewCardButton = document.querySelector(".profile__plus-button");
-const cardForm = document.forms["card-form"];
-const addCardTitleInput = cardForm.querySelector("#card-title-input");
-const addCardUrlInput = cardForm.querySelector("#card-url-input");
-
-const previewImageModal = document.querySelector("#preview-image-modal");
-const previewImage = previewImageModal.querySelector(".modal__preview-image");
-const previewImageCaption = previewImageModal.querySelector(
-  ".modal__preview-text"
-);
-
-//  Query Selectors for Close Buttons
-
-const profileCloseButton = document.querySelector("#profile-modal-closed");
-const addCardModalCloseButton = addCardModal.querySelector(
-  "#add-card-modal-closed"
-);
-const previewImageCloseButton = document.querySelector("#preview-image-closed");
 
 function closeModal(modal) {
   modal.classList.remove("modal_opened");
