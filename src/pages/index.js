@@ -56,19 +56,19 @@ const imagePopup = new PopupWithImage("#preview-image-modal");
 imagePopup.setEventListeners();
 
 const addCardPopup = new PopupWithForm(
-  "#add-modal",
+  "#add-card-modal",
   handleAddCardModalFormSubmit
 );
 addCardPopup.setEventListeners();
 
-const editProfilePopup = new PopupWithForm("#edit-profile-modal", (values) => {
+const editProfilePopup = new PopupWithForm("#edit-modal", (values) => {
   userInfo.setUserInfo(values);
 });
 editProfilePopup.setEventListeners();
 
 const userInfo = new UserInfo({
-  nameSelector: "#profile-name-input",
-  jobSelector: "#profile-description-input",
+  nameElement: "#profile-name-input",
+  jobElement: "#profile-description-input",
 });
 
 function closeModal(modal) {
