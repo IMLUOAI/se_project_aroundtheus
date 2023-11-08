@@ -9,18 +9,11 @@ export default class PopupWithImage extends Popup {
     this._popupCaption = this._popupElement.querySelector(
       ".modal__preview-text"
     );
-    this._setEventListeners();
   }
   open(name, link) {
     this._popupImage.src = link;
     this._popupImage.alt = name;
     this._popupCaption.textContent = name;
     super.open();
-  }
-
-  _setEventListeners() {
-    this._closeButton.addEventListener("click", () => {
-      this.close();
-    });
   }
 }

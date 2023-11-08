@@ -4,6 +4,7 @@ export default class Popup {
     this._closeButton = this._popupElement.querySelector(
       ".modal__close-button"
     );
+    this._handleEscClose = this._handleEscClose.bind(this);
   }
   open() {
     this._popupElement.classList.add("modal__opened");
