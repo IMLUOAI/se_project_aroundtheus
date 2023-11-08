@@ -34,7 +34,9 @@ export default class Card {
 
   getView() {
     this._likeButton = this._cardElement.querySelector(".card__heart-button");
-    this._deleteButton = this._cardElement.querySelector(".card__delete-button");
+    this._deleteButton = this._cardElement.querySelector(
+      ".card__delete-button"
+    );
     this._cardImage = this._cardElement.querySelector(".card__image");
     this._cardTitle = this._cardElement.querySelector(".card__title");
     this._cardImage.src = this._link;

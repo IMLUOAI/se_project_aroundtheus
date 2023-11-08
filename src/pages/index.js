@@ -34,7 +34,10 @@ import {
 const section = new Section(
   {
     items: initialCards,
-    renderer: renderCard,
+    renderer: (cardData) => {
+      const card = createCard(cardData);
+      section.addItem(card);
+    },
   },
   ".gallery__cards"
 );
@@ -51,16 +54,20 @@ editProfileFormValidator.enableValidation();
 const imagePopup = new PopupWithImage("#preview-image-modal");
 imagePopup.setEventListeners();
 
-const addCardPopup = new PopupWithForm(
-  "#add-card-modal",
-  handleAddCardFormSubmit
-);
+const addCardPopup = new PopupWithForm("#add-card-modal", (values) => {
+  const cardData = {
+    name: values.name,
+    link: values.link,
+  };
+  renderCard(cardData);
+  addCardPopup.close();
+});
 addCardPopup.setEventListeners();
 
-const editProfilePopup = new PopupWithForm(
-  "#edit-modal",
-  handleEditProfileFormSubmit
-);
+const editProfilePopup = new PopupWithForm("#edit-modal", (values) => {
+  userInfo.setUserInfo(values);
+  editProfilePopup.close();
+});
 editProfilePopup.setEventListeners();
 
 const userInfo = new UserInfo({
@@ -69,44 +76,91 @@ const userInfo = new UserInfo({
 });
 
 profileEditButton.addEventListener("click", () => {
-  const data = userInfo.getUserInfo();
-  profileNameInput.value = data.name;
-  profileJobInput.value = data.job;
+  console.log("edit profile button clicked");
+  const values = userInfo.getUserInfo();
+  profileNameInput.value = values.name;
+  profileJobInput.value = values.job;
   editProfileFormValidator.toggleButtonState();
   editProfilePopup.open();
 });
 
 addNewCardButton.addEventListener("click", () => {
+  console.log("add card button clicked");
   addCardFormValidator.toggleButtonState();
   addCardPopup.open();
 });
 
 function createCard(cardData) {
-  const card = new Card(cardData, "#card-template", (link, title) => {
-    imagePopup.open(link, title);
+  const card = new Card(cardData, "#card-template", () => {
+    imagePopup.open(cardData.name, cardData.link);
   });
   return card.getView();
 }
 
-function renderCard(cardData) {
-  const element = createCard(cardData);
-  section.addItem(element);
-}
-
-// function handleImageClick(card) {
-//   const data = {
-//     name: card.alt,
-//     link: card.src,
-//   };
-//   imagePopup.open(data);
+// function handleImageClick(name, link) {
+//   imagePopup.open(name, link);
 // }
 
-function handleAddCardFormSubmit(data) {
-  renderCard(data);
-  addCardPopup.close();
+function renderCard(cardData) {
+  const card = createCard(cardData);
+  section.addItem(card);
 }
 
-function handleEditProfileFormSubmit(data) {
-  userInfo.setUserInfo(data);
-  editProfilePopup.close();
-}
+// function handleAddCardFormSubmit(cardData) {
+//   const card = createCard(cardData);
+//   section.addItem(card);
+//   addCardPopup.close();
+// }
+
+// function closeModal(modal) {
+//   modal.classList.remove("modal_opened");
+//   document.removeEventListener("keydown", closeWithEsc);
+//   modal.removeEventListener("mousedown", closeWithMouse);
+// }
+
+// function closeWithEsc(evt) {
+//   if (evt.key === "Escape") {
+//     const openModal = document.querySelector(".modal_opened");
+//     closeModal(openModal);
+//   }
+// }
+// function closeWithMouse(e) {
+//   if (e.target.classList.contains("modal_opened")) {
+//     closeModal(e.target);
+//   }
+// }
+
+// function openModal(modal) {
+//   modal.classList.add("modal_opened");
+//   document.addEventListener("keydown", closeWithEsc);
+//   modal.addEventListener("mousedown", closeWithMouse);
+// }
+
+// function handleProfileModalFormSubmit(evt) {
+//   evt.preventDefault();
+//   profileTitle.textContent = profileNameInput.value;
+//   profileDescription.textContent = profileJobInput.value;
+//   editProfilePopup.close();
+// }
+
+// function handleAddCardModalFormSubmit(evt) {
+//   evt.preventDefault();
+//   const name = addCardTitleInput.value;
+//   const link = addCardUrlInput.value;
+//   renderCard({ name, link }, cardsWrap);
+//   cardForm.reset();
+//   addCardPopup.close();
+// }
+
+profileCloseButton.addEventListener("click", () => editProfilePopup.close());
+
+// addNewCardButton.addEventListener("click", () => {
+//   addCardFormValidator.toggleButtonState();
+//   openModal(addCardModal);
+// });
+
+addCardModalCloseButton.addEventListener("click", () => addCardPopup.close());
+
+previewImageCloseButton.addEventListener("click", () => imagePopup.close());
+
+// initialCards.forEach((cardData) => renderCard(cardData, cardsWrap));
