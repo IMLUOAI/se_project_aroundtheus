@@ -60,7 +60,6 @@ profileEditButton.addEventListener("click", () => {
   const user = userInfo.getUserInfo();
   profileTitle.value = user.name;
   profileDescription.value = user.job;
-
   editProfileFormValidator.toggleButtonState();
   editProfilePopup.open();
 });
