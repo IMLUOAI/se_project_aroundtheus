@@ -56,7 +56,7 @@ export const profileForm = document.forms["profile-form"];
 export const profileNameInput = profileForm.querySelector(
   "#profile-name-input"
 );
-export const profileJobInput = profileForm.querySelector(
+export const profileDescriptionInput = profileForm.querySelector(
   "#profile-description-input"
 );
 

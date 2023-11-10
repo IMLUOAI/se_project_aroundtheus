@@ -11,8 +11,10 @@ import {
   options,
   profileEditButton,
   profileNameInput,
-  profileJobInput,
   addNewCardButton,
+  profileDescriptionInput,
+  profileTitle,
+  profileDescription,
 } from "../utils/constant.js";
 
 const section = new Section(
@@ -38,32 +40,37 @@ editProfileFormValidator.enableValidation();
 const imagePopup = new PopupWithImage("#preview-image-modal");
 imagePopup.setEventListeners();
 
-const addCardPopup = new PopupWithForm("#add-card-modal", (values) => {
+const addCardPopup = new PopupWithForm("#add-card-modal", (value) => {
   const cardData = {
-    name: values.name,
-    link: values.link,
+    name: value.Title,
+    link: value.URL,
   };
   renderCard(cardData);
   addCardPopup.close();
 });
 addCardPopup.setEventListeners();
 
-const editProfilePopup = new PopupWithForm("#edit-modal", (values) => {
-  userInfo.setUserInfo(values);
+const userInfo = new UserInfo(
+  "#profile-name-input",
+  "#profile-description-input"
+);
+
+const editProfilePopup = new PopupWithForm("#edit-modal", (profileData) => {
+  // debugger;
+  userInfo.setUserInfo(profileData.name, profileData.description);
+  profileTitle.textContent = profileData.name;
+  profileDescription.textContent = profileData.description;
   editProfilePopup.close();
 });
 editProfilePopup.setEventListeners();
 
-const userInfo = new UserInfo({
-  nameSelector: "#profile-name-input",
-  descriptionSelector: "#profile-description-input",
-});
-
 profileEditButton.addEventListener("click", () => {
+  debugger;
   console.log("edit profile button clicked");
-  const values = userInfo.getUserInfo({ name: "new name", job: "new job" });
-  profileNameInput.value = values.name;
-  profileJobInput.value = values.job;
+  const user = userInfo.getUserInfo();
+  profileTitle.value = user.name;
+  profileDescription.value = user.job;
+
   editProfileFormValidator.toggleButtonState();
   editProfilePopup.open();
 });
