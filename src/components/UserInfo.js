@@ -1,7 +1,7 @@
 export default class UserInfo {
-  constructor(nameSelector, descriptionSelector) {
+  constructor(titleSelector, descriptionSelector) {
     debugger;
-    this._nameElement = document.querySelector(nameSelector);
+    this._nameElement = document.querySelector(titleSelector);
     this._descriptionElement = document.querySelector(descriptionSelector);
   }
 

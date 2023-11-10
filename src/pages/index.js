@@ -48,23 +48,15 @@ const addCardPopup = new PopupWithForm("#add-card-modal", (value) => {
 });
 addCardPopup.setEventListeners();
 
-const userInfo = new UserInfo(
-  "#profile-name-input",
-  "#profile-description-input"
-);
+const userInfo = new UserInfo(".profile__title", ".profile__description");
 
 const editProfilePopup = new PopupWithForm("#edit-modal", (profileData) => {
-  // debugger;
   userInfo.setUserInfo(profileData.name, profileData.description);
-  profileTitle.textContent = profileData.name;
-  profileDescription.textContent = profileData.description;
   editProfilePopup.close();
 });
 editProfilePopup.setEventListeners();
 
 profileEditButton.addEventListener("click", () => {
-  debugger;
-  console.log("edit profile button clicked");
   const user = userInfo.getUserInfo();
   profileTitle.value = user.name;
   profileDescription.value = user.job;
@@ -74,7 +66,6 @@ profileEditButton.addEventListener("click", () => {
 });
 
 addNewCardButton.addEventListener("click", () => {
-  console.log("add card button clicked");
   addCardFormValidator.toggleButtonState();
   addCardPopup.open();
 });
