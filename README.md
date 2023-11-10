@@ -1,4 +1,4 @@
-# Project 3: Around The U.S.
+# Project 8: Around The U.S.
 
 ### Overview
 
@@ -7,11 +7,18 @@
 - Images
 - Vectors
 - vendor
-- js/DOM
+- js/BEM/DOM/OOP/
 - validate.js
-- form API
+- NPM/WEBPACK WAS INSTALLED
+- SUB.JS / Destructuring/Refactoring/
 
 **Intro**
+key knowledge points:
+
+- BEM: BLOCK-ELEMENT-MODIFY
+- DOM: DOCUMENT-OBJECT-MODEL
+- OOP: OBJECT-ORIENTED-PROGRAMMING (1. Encapsulation 2. Inheritance 3. Polymorphism)
+- NPM: NODE PACKAGE MANAGE
 
 This project is made so all the elements are displayed correctly on popular screen sizes. We recommend investing more time in completing this project, since it's more difficult than previous ones.
 
@@ -36,5 +43,6 @@ Based on the previous project, Javascript starts to embed in this stage. Current
 
 DOM was primarily used in this project, like the EventListener, handlers, template, etc.
 
+The page now start to be manipulated by the npm run dev / WEBPACK server, more mechanic now
 
-** I NOW CONQUERED THE Sprint 6 and ready to conquer the rest 9 Sprints ahead, the road aheaad is getting tougher and tougher 
+Still has another 8 projecdts ahead/// it's time to conquer the back-end part!!!!

@@ -10,9 +10,7 @@ import {
   initialCards,
   options,
   profileEditButton,
-  profileNameInput,
   addNewCardButton,
-  profileDescriptionInput,
   profileTitle,
   profileDescription,
 } from "../utils/constant.js";
