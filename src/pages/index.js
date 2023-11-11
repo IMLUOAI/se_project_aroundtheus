@@ -11,8 +11,8 @@ import {
   options,
   profileEditButton,
   addNewCardButton,
-  profileTitle,
-  profileDescription,
+  profileNameInput,
+  profileDescriptionInput,
 } from "../utils/constant.js";
 
 const section = new Section(
@@ -58,8 +58,8 @@ editProfilePopup.setEventListeners();
 
 profileEditButton.addEventListener("click", () => {
   const user = userInfo.getUserInfo();
-  profileTitle.value = user.name;
-  profileDescription.value = user.job;
+  profileNameInput.value = user.name;
+  profileDescriptionInput.value = user.job;
   editProfileFormValidator.toggleButtonState();
   editProfilePopup.open();
 });
