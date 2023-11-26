@@ -7,19 +7,32 @@
 }
 
 .profile__avatar {
-  max-width: 168.75px;
-  max-height: 127.5px;
-  margin: 3.75px 0;
-  flex-shrink: 0;
-  overflow: hidden;
-  background-position: center;
-}
-
-.profile__avatar img {
   width: 120px;
   height: 120px;
   border-radius: 50%;
   object-fit: cover;
+  background-position: center;
+}
+
+.profile__avatar-edit {
+  position: absolute;
+  background: transparent url("../vectors/pencil.svg");
+  width: 120px;
+  height: 120px;
+  background-size: 20%;
+  background-repeat: no-repeat;
+  border: none;
+  opacity: 0;
+  border-radius: 50%;
+  object-fit: cover;
+  background-position: center;
+  background-color: rgba(0,0,0,0.8);
+  transition: ease-in-out 0.3s;
+}
+
+.profile__avatar-edit:hover {
+  opacity: 1;
+ cursor: pointer;
 }
 
 .profile__info {

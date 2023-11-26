@@ -1,3 +1,4 @@
+import Api from "../components/Api.js";
 import Card from "../components/Card.js";
 import FormValidator from "../components/FormValidator.js";
 import Popup from "../components/Popup.js";
@@ -48,7 +49,19 @@ const addCardPopup = new PopupWithForm("#add-card-modal", (value) => {
 });
 addCardPopup.setEventListeners();
 
-const userInfo = new UserInfo(".profile__title", ".profile__description");
+const api = new Api({
+  baseUrl: "https://around-api.en.tripleten-services.com/v1",
+  headers: {
+    authorization: "017f0c48-eeeb-4059-9c3c-1a662a9e8f92",
+    "Content-Type": "application/json",
+  },
+});
+
+const userInfo = new UserInfo(
+  ".profile__title",
+  ".profile__description",
+  ".profile__avatar"
+);
 
 const editProfilePopup = new PopupWithForm("#edit-modal", (profileData) => {
   userInfo.setUserInfo(profileData.name, profileData.description);
@@ -80,3 +93,7 @@ function renderCard(cardData) {
   const card = createCard(cardData);
   section.addItem(card);
 }
+
+Promise.all([api.getInitialCards(), api.getProfileApi()]).then(
+  ([cards, userData]) => {}
+);
