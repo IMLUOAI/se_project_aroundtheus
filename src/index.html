@@ -20,18 +20,14 @@
       </header>
       <main class="content">
         <section class="profile page__section">
-          <img
-            src="<%=require('./vectors/jacques-cousteau.svg')%>"
-            alt="avatar"
-            class="profile__avatar"
-          />
-          <button
-            id="avatar-edit-button"
-            class="profile__avatar-edit"
-            title="edit avatar"
-            type="button"
-          ></button>
-
+          <div class="profile__avatar-container">
+            <img
+              src="<%=require('./vectors/jacques-cousteau.svg')%>"
+              alt="avatar"
+              class="profile__avatar"
+            />
+            <button class="profile__avatar-edit-button" type="button"></button>
+          </div>
           <div class="profile__info">
             <h1 class="profile__title">Jacques Cousteau</h1>
             <button type="button" class="profile__edit-button"></button>
@@ -46,6 +42,38 @@
       <footer class="footer page__section">
         <p class="footer__copyright">&copy; 2023 Around The U.S.</p>
       </footer>
+    </div>
+
+    <!-- change profile avatar modal -->
+
+    <div class="modal" id="change-profile-avatar-modal">
+      <div class="modal__container modal__container_type_avatar">
+        <button
+          type="button"
+          class="modal__close-button"
+          id="avatar-modal-closed"
+        ></button>
+        <h2 class="modal__title">Change profile picture</h2>
+        <form class="modal__form" id="avatar-form" novalidate>
+          <label class="modal__label">
+            <input
+              type="text"
+              name="url"
+              class="modal__input"
+              id="avatar-url-input"
+              placeholder="Image URL"
+              required
+            />
+            <span class="modal__error" id="avatar-url-input-error"></span>
+          </label>
+          <button
+            type="submit"
+            class="modal__submit-button modal__submit-button_disabled"
+          >
+            Save
+          </button>
+        </form>
+      </div>
     </div>
 
     <!-- edit-profile-modal -->
@@ -154,6 +182,25 @@
         ></button>
         <img src="#" alt="" class="modal__preview-image" />
         <p class="modal__preview-text"></p>
+      </div>
+    </div>
+
+    <!-- delete card modal -->
+
+    <div class="modal" id="delete-card-modal">
+      <div class="modal__container modal__container_type_delete">
+        <button
+          type="button"
+          class="modal__close-button"
+          id="delete-card-modal-closed"
+        ></button>
+        <h2 class="modal__title">Are you sure?</h2>
+        <button
+          type="submit"
+          class="modal__submit-button modal__submit-button_disabled"
+        >
+          Yes
+        </button>
       </div>
     </div>
 

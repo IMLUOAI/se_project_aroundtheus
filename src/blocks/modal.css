@@ -44,6 +44,16 @@
   transform: translate(-50%, -50%);
 }
 
+.modal__container_type_delete {
+  width: 430px;
+  height: 181px;
+}
+
+.modal__container_type_avatar {
+  width: 430px;
+  height: 272px;
+}
+
 .modal__close-button {
   width: 40px;
   height: 40px;
