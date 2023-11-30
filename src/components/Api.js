@@ -1,6 +1,6 @@
 export default class Api {
   constructor(options) {
-    this._url = options.url;
+    this._baseUrl = options.baseUrl;
     this._headers = options.headers;
   }
 
@@ -8,14 +8,21 @@ export default class Api {
     return res.ok ? res.json() : Promise.reject("Error:${res.status}");
   }
 
-  getProfileApi() {
-    return fetch(this.url + "/users/me", {
+  getProfile() {
+    return fetch("${this.baseUrl}/users/me", {
       headers: this._headers,
     }).then(this._getRes);
   }
 
-  editProfileApi(data) {
-    return fetch(this._url + "/users/me", {
+  getInitialCards() {
+    return fetch("${this._baseUrl}/cards", {
+      method: "GET",
+      headers: this._headers,
+    }).then(this._getRes);
+  }
+
+  editProfile(data) {
+    return fetch("${this._baseUrl}/users/me", {
       method: "PATCH",
       headers: this._headers,
       body: JSON.stringify({
@@ -25,15 +32,8 @@ export default class Api {
     }).then(this._getRes);
   }
 
-  getInitialCards() {
-    return fetch(this._url + "/cards", {
-      method: "GET",
-      headers: this._headers,
-    }).then(this._getRes);
-  }
-
-  createCardApi(CardData) {
-    return fetch(this._url + "/cards", {
+  addCard(cardData) {
+    return fetch("${this._baseUrl}/cards", {
       method: "POST",
       headers: this._headers,
       boyd: JSON.stringify({
@@ -43,15 +43,21 @@ export default class Api {
     }).then(this._getRes);
   }
 
-  deleteCard(cardID) {
-    return fetch(this._url + "/cards/${cardID}", {
+  deleteCard(cardId) {
+    return fetch("${this._baseUrl}/cards/${cardId}", {
       method: "DELETE",
       headers: this._headers,
     }).then(this._getRes);
   }
 
-  updateAvatar(data) {
-    return fetch(this._url + "/users/me/avatar", {
+  userInfo() {
+    return fetch("${this._baseUrl}/users/me", { headers: this._headers }).then(
+      this._getRes
+    );
+  }
+
+  userAvatar(data) {
+    return fetch("${this._baseUrl}/users/me/avatar", {
       method: "PATCH",
       headers: this._headers,
       body: JSON.stringify({
@@ -60,21 +66,21 @@ export default class Api {
     }).then(this._getRes);
   }
 
-  getLikes(cardID) {
-    return fetch("${this._url}/cards/likes/${cardID}", {
+  getLikes(cardId) {
+    return fetch("${this._baseUrl}/cards/likes/${cardId}", {
       headers: this._headers,
     }).then(this._getRes);
   }
 
-  likeCard(cardID) {
-    return fetch(this._url + "/cards/${cardID}/likes", {
+  likeCard(cardId) {
+    return fetch("${this._baseUrl}/cards/${cardId}/likes", {
       method: "PUT",
       headers: this._headeres,
     }).then(this._getRes);
   }
 
-  disLikeCard(cardID) {
-    return fetch(this._url + "/cards/${cardID}/likes", {
+  dislikeCard(cardId) {
+    return fetch("${this._baseUrl}/cards/${cardId}/likes", {
       method: "DELETE",
       headers: this._headers,
     }).then(this._getRes);

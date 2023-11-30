@@ -1,7 +1,6 @@
 import Api from "../components/Api.js";
 import Card from "../components/Card.js";
 import FormValidator from "../components/FormValidator.js";
-import Popup from "../components/Popup.js";
 import PopupWithForm from "../components/PopupWithForm.js";
 import PopupWithImage from "../components/PopupWithImage.js";
 import "../pages/index.css";
@@ -48,6 +47,7 @@ const changeProfileAvatarPopup = new PopupWithForm(
   "#change-profile-avatar-modal",
   handleChangeProfileAvatarFormSubmit
 );
+changeProfileAvatarPopup.setEventListeners();
 
 const imagePopup = new PopupWithImage("#preview-image-modal");
 imagePopup.setEventListeners();
@@ -98,26 +98,26 @@ addNewCardButton.addEventListener("click", () => {
 profileAvatarEditButton.addEventListener("click", () => {
   changeProfileAvatarFormValidator.toggleButtonState();
   changeProfileAvatarPopup.open();
-  console.log("who are you?");
 });
 
 function createCard(cardData) {
+  return createCard(cardData);
+}
+
+function createAndRenderCard(cardData) {
   const card = new Card(
     cardData,
     "#card-template",
+    handleImageClick,
     handleCardLike,
     handleDeleteCardFormSubmit,
     () => {
       imagePopup.open(cardData.name, cardData.link);
     }
   );
-  return card.getView();
+  section.addItem(card.getView());
 }
-
-function renderCard(cardData) {
-  const card = createCard(cardData);
-  section.addItem(card);
-}
+createAndRenderCard(cardData);
 
 const api = new Api({
   baseUrl: "https://around-api.en.tripleten-services.com/v1",
@@ -127,8 +127,14 @@ const api = new Api({
   },
 });
 Promise.all([api.getInitialCards(), api.getProfileApi()]).then(
-  ([cards, userData]) => {}
+  ([cards, userData]) => {
+    cards.forEach((cardData) => {
+      createAndRenderCard(cardData);
+    });
+  }
 );
+
+const profileAvatar = document.querySelector(".profile__avatar");
 
 const userInfo = new UserInfo(
   ".profile__title",
@@ -136,12 +142,12 @@ const userInfo = new UserInfo(
   ".profile__avatar"
 );
 
-function handleChangeProfileAvatarFormSubmit(data) {
+function handleChangeProfileAvatarFormSubmit(avatar) {
   changeProfileAvatarPopup.setLoading(true, "saving...");
   api
-    .editUserAvatar(data.link)
+    .editUserAvatar(avatar.url)
     .then(() => {
-      userInfo.setUserAvatar(data.link);
+      userInfo.setUserAvatar(avatar.url);
       changeProfileAvatarPopup.close();
     })
     .catch((err) => {
@@ -153,7 +159,7 @@ function handleChangeProfileAvatarFormSubmit(data) {
 function handleDeleteCardFormSubmit(card) {
   deleteCardPopup.open();
   deleteCardPopup.setSubmitAction(() => {
-    deleteCardPopup.setLoading(true, "Saving...");
+    deleteCardPopup.setLoading(true, "Deleting...");
     api
       .deleteCard(card)
       .then(() => {
@@ -192,9 +198,8 @@ function handleAddCardFormSubmit(cardData) {
   addCardPopup.setLoading(true, "Saving...");
   api
     .addCard(cardData)
-    .then((card) => {
-      let cardValue = renderCard(card);
-      cardSection.addItem(cardValue);
+    .then((res) => {
+      createAndRenderCard(cardData);
       addCardPopup.close();
     })
     .catch((err) => {
@@ -203,13 +208,12 @@ function handleAddCardFormSubmit(cardData) {
     .finally(() => addCardPopup.setLoading(false, "Create"));
 }
 
-function handleEditProfileFormSubmit(data) {
+function handleEditProfileFormSubmit(name, job) {
   editProfilePopup.setLoading(true, "Saving...");
   api
-    .editUserInfo(data)
+    .editUserInfo(name, job)
     .then((userData) => {
       userInfo.setUserInfo(userData.name, userData.job);
-      cardSection.addItem(cardValue);
       editProfilePopup.close();
     })
     .catch((err) => {

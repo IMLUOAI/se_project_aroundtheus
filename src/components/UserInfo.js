@@ -16,9 +16,9 @@ export default class UserInfo {
     this._titleElement.textContent = name;
     this._descriptionElement.textContent = job;
     this._avatarElement.src = avatar;
-    this._userID = _id;
+    this._userId = _id;
   }
   getID() {
-    return this._userID;
+    return this._userId;
   }
 }

@@ -3,7 +3,7 @@ export default class Card {
     { name, link },
     cardSelector,
     handleImageClick,
-    handleDeleteConfirmSubmit,
+    handleDeleteCardFormSubmit,
     handleCardLike
   ) {
     this._name = name;
@@ -11,7 +11,7 @@ export default class Card {
     this._cardSelector = cardSelector;
     this._handleImageClick = handleImageClick;
     this._cardElement = this._getTemplate();
-    this._handleDeleteConfirmSubmit = handleDeleteConfirmSubmit;
+    this._handleDeleteCardFormSubmit = handleDeleteCardFormSubmit;
     this._handleCardLike = handleCardLike;
   }
 
