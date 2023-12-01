@@ -4,39 +4,21 @@ export default class Api {
     this._headers = options.headers;
   }
 
-  _getRes(res) {
-    return res.ok ? res.json() : Promise.reject("Error:${res.status}");
-  }
-
-  getProfile() {
-    return fetch("${this.baseUrl}/users/me", {
-      headers: this._headers,
-    }).then(this._getRes);
-  }
-
   getInitialCards() {
     return fetch("${this._baseUrl}/cards", {
-      method: "GET",
+      // method: "GET",
       headers: this._headers,
     }).then(this._getRes);
   }
-
-  editProfile(data) {
-    return fetch("${this._baseUrl}/users/me", {
-      method: "PATCH",
-      headers: this._headers,
-      body: JSON.stringify({
-        name: data.title,
-        job: data.description,
-      }),
-    }).then(this._getRes);
+  _getRes(res) {
+    return res.ok ? res.json() : Promise.reject("Error:${res.status}");
   }
 
   addCard(cardData) {
     return fetch("${this._baseUrl}/cards", {
       method: "POST",
       headers: this._headers,
-      boyd: JSON.stringify({
+      body: JSON.stringify({
         name: cardData.title,
         link: cardData.url,
       }),
@@ -47,6 +29,23 @@ export default class Api {
     return fetch("${this._baseUrl}/cards/${cardId}", {
       method: "DELETE",
       headers: this._headers,
+    }).then(this._getRes);
+  }
+
+  getUserInfo() {
+    return fetch("${this.baseUrl}/users/me", {
+      headers: this._headers,
+    }).then(this._getRes);
+  }
+
+  editUserInfo(data) {
+    return fetch("${this._baseUrl}/users/me", {
+      method: "PATCH",
+      headers: this._headers,
+      body: JSON.stringify({
+        name: data.title,
+        job: data.description,
+      }),
     }).then(this._getRes);
   }
 
@@ -75,7 +74,7 @@ export default class Api {
   likeCard(cardId) {
     return fetch("${this._baseUrl}/cards/${cardId}/likes", {
       method: "PUT",
-      headers: this._headeres,
+      headers: this._headers,
     }).then(this._getRes);
   }
 
