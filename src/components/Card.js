@@ -65,6 +65,10 @@ export default class Card {
     this._cardLike = this._cardElement.querySelector(".card__heart-number");
 
     this._renderLikes();
+
+    if (this._userId != this._ownerId) {
+      this._deleteButton.remove();
+    }
     this._cardImage.src = this._link;
     this._cardTitle.textContent = this._name;
     this._cardImage.alt = `photo of ${this._name}`;
