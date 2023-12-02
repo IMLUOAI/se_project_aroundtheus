@@ -4,7 +4,7 @@ export default class Card {
     cardSelector,
     handleImageClick,
     handleDeleteClick,
-    _handleLikeClick
+    handleLikeClick
   ) {
     this._name = name;
     this._link = link;
@@ -14,7 +14,7 @@ export default class Card {
     this._handleImageClick = handleImageClick;
     this._cardElement = this._getTemplate();
     this._handleDeleteClick = handleDeleteClick;
-    this._handleLikeClick = this._handleLikeClick;
+    this._handleLikeClick = handleLikeClick;
   }
 
   _getTemplate() {
@@ -37,7 +37,7 @@ export default class Card {
     });
   }
 
-  removeCard() {
+  deleteCard() {
     this._cardElement.remove();
     this._cardElement = null;
   }
@@ -62,6 +62,9 @@ export default class Card {
     );
     this._cardImage = this._cardElement.querySelector(".card__image");
     this._cardTitle = this._cardElement.querySelector(".card__title");
+    this._cardLike = this._cardElement.querySelector(".card__heart-number");
+
+    this._renderLikes();
     this._cardImage.src = this._link;
     this._cardTitle.textContent = this._name;
     this._cardImage.alt = `photo of ${this._name}`;
