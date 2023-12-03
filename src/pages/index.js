@@ -101,42 +101,11 @@ function createCard(cardData) {
     () => {
       imagePopup.open(cardData.name, cardData.link);
     },
-    (cardId) => {
-      deleteCardPopup.open();
-      deleteCardPopup.setSubmitAction(() => {
-        deleteCardPopup.setLoading(true, "Deleting...");
-        api
-          .deleteCard(card.getId())
-          .then(() => {
-            card.deleteCard(), deleteCardPopup.close();
-          })
-          .catch((err) => {
-            console.error(err);
-          })
-          .finally(() => deleteCardPopup.setLoading(false, "Yes"));
-      });
+    () => {
+      handleDeleteClick(card);
     },
-
-    (cardId) => {
-      if (!card.isLiked) {
-        api
-          .likeCard(card.id)
-          .then(() => {
-            card.updateLikeStatus(true);
-          })
-          .catch((err) => {
-            console.error(err);
-          });
-      } else {
-        api
-          .disLikeCard(card.id)
-          .then(() => {
-            card.updateLikeStatus(false);
-          })
-          .catch((err) => {
-            console.error(err);
-          });
-      }
+    () => {
+      handleLikeClick(card);
     }
   );
   return card.getView();
@@ -161,43 +130,45 @@ function handleChangeProfileAvatarFormSubmit(avatar) {
     .finally(() => changeProfileAvatarPopup.setLoading(false, "Save"));
 }
 
-// function handleDeleteClick(card) {
-//   deleteCardPopup.open();
-//   deleteCardPopup.setSubmitAction(() => {
-//     deleteCardPopup.setLoading(true, "Deleting...");
-//     api
-//       .deleteCard(card.getId())
-//       .then(() => {
-//         card.deleteCard(), deleteCardPopup.close();
-//       })
-//       .catch((err) => {
-//         console.error(err);
-//       })
-//       .finally(() => deleteCardPopup.setLoading(false, "Yes"));
-//   });
-// }
+function handleDeleteClick(card) {
+  deleteCardPopup.open();
+  deleteCardPopup.setSubmitAction(() => {
+    deleteCardPopup.setLoading(true, "Deleting...");
+    api
+      .deleteCard(card.getId())
+      .then((result) => {
+        card.deleteCard(), deleteCardPopup.close(result._id);
+      })
+      .catch((err) => {
+        console.error(err);
+      })
+      .finally(() => {
+        deleteCardPopup.setLoading(false, "Yes");
+      });
+  });
+}
 
-// function handleLikeClick(card) {
-//   if (!card.isLiked) {
-//     api
-//       .likeCard(card.id)
-//       .then(() => {
-//         card.updateLikeStatus(true);
-//       })
-//       .catch((err) => {
-//         console.error(err);
-//       });
-//   } else {
-//     api
-//       .disLikeCard(card.id)
-//       .then(() => {
-//         card.updateLikeStatus(false);
-//       })
-//       .catch((err) => {
-//         console.error(err);
-//       });
-//   }
-// }
+function handleLikeClick(card) {
+  if (!card.isLiked) {
+    api
+      .likeCard(card.id)
+      .then(() => {
+        card.updateLikeStatus(true);
+      })
+      .catch((err) => {
+        console.error(err);
+      });
+  } else {
+    api
+      .disLikeCard(card.id)
+      .then(() => {
+        card.updateLikeStatus(false);
+      })
+      .catch((err) => {
+        console.error(err);
+      });
+  }
+}
 
 function handleAddCardFormSubmit(cardData) {
   addCardPopup.setLoading(true, "Saving...");
