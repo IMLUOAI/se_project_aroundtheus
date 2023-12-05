@@ -1,20 +1,22 @@
+import { HotUpdateChunk } from "webpack";
+
 export default class Card {
   constructor(
-    { name, link, _id, isLiked },
+    { name, link, userId, isLiked },
     cardSelector,
     handleImageClick,
-    handleDeleteClick,
-    handleLikeClick
+    handleCardDelete,
+    handleCardLike
   ) {
     this._name = name;
     this._link = link;
-    this.id = _id;
+    this._userId = userId;
     this.isLiked = isLiked;
     this._cardSelector = cardSelector;
     this._handleImageClick = handleImageClick;
+    this._handleCardDelete = handleCardDelete;
+    this._handleCardLike = handleCardLike;
     this._cardElement = this._getTemplate();
-    this._handleDeleteClick = handleDeleteClick;
-    this._handleLikeClick = handleLikeClick;
   }
 
   _getTemplate() {
@@ -27,10 +29,10 @@ export default class Card {
 
   _setEventListeners() {
     this._likeButton.addEventListener("click", () => {
-      this._handleLikeClick();
+      this._handleLike();
     });
     this._deleteButton.addEventListener("click", () => {
-      this._handleDeleteClick();
+      this._handleDelete();
     });
     this._cardImage.addEventListener("click", () => {
       this._handleImageClick(this._name, this._link);
@@ -48,6 +50,7 @@ export default class Card {
   }
 
   _renderLikes() {
+    this.cardLikeStatus.textContent = cardLikes;
     if (this.isLiked) {
       this._likeButton.classList.add("card__heart-button_active");
     } else {
@@ -62,17 +65,18 @@ export default class Card {
     );
     this._cardImage = this._cardElement.querySelector(".card__image");
     this._cardTitle = this._cardElement.querySelector(".card__title");
-    this._cardLike = this._cardElement.querySelector(".card__heart-number");
+    this._cardLikes = this._cardElement.querySelector(".card__heart-count");
+
+    this._setEventListeners();
 
     this._renderLikes();
 
-    if (this._userId != this._ownerId) {
-      this._deleteButton.remove();
-    }
+    // if (this._userId != this._ownerId) {
+    //   this._deleteButton.remove();
+    // }
     this._cardImage.src = this._link;
     this._cardTitle.textContent = this._name;
     this._cardImage.alt = `photo of ${this._name}`;
-    this._setEventListeners();
     return this._cardElement;
   }
 }

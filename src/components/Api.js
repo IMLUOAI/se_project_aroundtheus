@@ -33,7 +33,7 @@ export default class Api {
   }
 
   getUserInfo() {
-    return fetch(`${this.baseUrl}/users/me`, {
+    return fetch(`${this._baseUrl}/users/me`, {
       headers: this._headers,
     }).then(this._getRes);
   }
@@ -43,17 +43,17 @@ export default class Api {
       method: "PATCH",
       headers: this._headers,
       body: JSON.stringify({
-        name: data.title,
+        name: data.name,
         job: data.description,
       }),
     }).then(this._getRes);
   }
 
-  userInfo() {
-    return fetch(`${this._baseUrl}/users/me`, { headers: this._headers }).then(
-      this._getRes
-    );
-  }
+  // userInfo() {
+  //   return fetch(`${this._baseUrl}/users/me`, { headers: this._headers }).then(
+  //     this._getRes
+  //   );
+  // }
 
   userAvatar(data) {
     return fetch(`${this._baseUrl}/users/me/avatar`, {
@@ -78,7 +78,7 @@ export default class Api {
     }).then(this._getRes);
   }
 
-  dislikeCard(cardId) {
+  disLikeCard(cardId) {
     return fetch(`${this._baseUrl}/cards/${cardId}/likes`, {
       method: "DELETE",
       headers: this._headers,
