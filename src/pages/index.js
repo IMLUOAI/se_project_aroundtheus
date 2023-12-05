@@ -33,8 +33,6 @@ const api = new Api({
   },
 });
 
-let section;
-
 Promise.all([api.getUserInfo(), api.getInitialCards()])
   .then(([userData, cardData]) => {
     userInfo.setUserInfo(userData.name, userData.job);
@@ -146,8 +144,8 @@ function createCard(cardData) {
         }
       },
       userId: userInfo.getId(),
-    },
-    "#card-template"
+    }
+    // "#card-template"
   );
   return cardElement.getView();
 }

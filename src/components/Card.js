@@ -1,5 +1,3 @@
-import { HotUpdateChunk } from "webpack";
-
 export default class Card {
   constructor(
     { name, link, userId, isLiked },
@@ -50,7 +48,7 @@ export default class Card {
   }
 
   _renderLikes() {
-    this.cardLikeStatus.textContent = cardLikes;
+    this.cardLikes.textContent = this.isLiked;
     if (this.isLiked) {
       this._likeButton.classList.add("card__heart-button_active");
     } else {
