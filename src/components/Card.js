@@ -1,6 +1,6 @@
 export default class Card {
   constructor(
-    { name, link, userId, isLiked },
+    { name, link, id, isLiked },
     cardSelector,
     handleImageClick,
     handleCardDelete,
@@ -8,8 +8,8 @@ export default class Card {
   ) {
     this._name = name;
     this._link = link;
-    this._userId = userId;
-    this.isLiked = isLiked;
+    this._id = id;
+    this._isLiked = isLiked;
     this._cardSelector = cardSelector;
     this._handleImageClick = handleImageClick;
     this._handleCardDelete = handleCardDelete;
@@ -27,10 +27,10 @@ export default class Card {
 
   _setEventListeners() {
     this._likeButton.addEventListener("click", () => {
-      this._handleLike();
+      this._handleCardLike();
     });
     this._deleteButton.addEventListener("click", () => {
-      this._handleDelete();
+      this._handleCardDelete();
     });
     this._cardImage.addEventListener("click", () => {
       this._handleImageClick(this._name, this._link);
@@ -42,18 +42,22 @@ export default class Card {
     this._cardElement = null;
   }
 
-  cardLikeStatus(isLiked) {
-    this.isLiked = isLiked;
+  updateLikeStatus(isLiked) {
+    this._isLiked = isLiked;
     this._renderLikes();
   }
 
   _renderLikes() {
-    this.cardLikes.textContent = this.isLiked;
+    this._cardLikes.textContent = this.isLiked;
     if (this.isLiked) {
       this._likeButton.classList.add("card__heart-button_active");
     } else {
       this._likeButton.classList.remove("card__heart-button_active");
     }
+  }
+
+  removeCard() {
+    this._cardElement.remove();
   }
 
   getView() {
@@ -66,15 +70,15 @@ export default class Card {
     this._cardLikes = this._cardElement.querySelector(".card__heart-count");
 
     this._setEventListeners();
-
     this._renderLikes();
 
-    // if (this._userId != this._ownerId) {
-    //   this._deleteButton.remove();
-    // }
     this._cardImage.src = this._link;
     this._cardTitle.textContent = this._name;
     this._cardImage.alt = `photo of ${this._name}`;
     return this._cardElement;
+  }
+
+  getId() {
+    return this._id;
   }
 }

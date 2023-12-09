@@ -33,15 +33,18 @@ const api = new Api({
   },
 });
 
-Promise.all([api.getUserInfo(), api.getInitialCards()])
-  .then(([userData, cardData]) => {
-    userInfo.setUserInfo(userData.name, userData.job);
-    userInfo.setAvatar(userData.avatar);
-    ownerId = userData._id;
+let section;
 
-    const section = new Section(
+Promise.all([api.getUserInfo(), api.getInitialCards()])
+  .then(([userData, initialCards]) => {
+    userInfo.setAvatar(userData.avatar);
+    userInfo.setUserInfo({
+      name: userData.name,
+      description: userData.job,
+    });
+    section = new Section(
       {
-        items: cardData,
+        items: initialCards,
         renderer: renderCard,
       },
       ".gallery__cards"
@@ -51,6 +54,20 @@ Promise.all([api.getUserInfo(), api.getInitialCards()])
   .catch((err) => {
     console.error(err);
   });
+
+function createCard(cardData) {
+  const card = new Card(cardData, "#card-template", {
+    handleImageClick: () => imagePopup.open(cardData.name, cardData.link),
+    handleCardDelete,
+    handleCardLike,
+  });
+  return card.getView();
+}
+
+function renderCard(cardData) {
+  const cardElement = createCard(cardData);
+  section.addItem(cardElement);
+}
 
 // form validations
 const changeProfileAvatarForm = document.forms["avatar-form"];
@@ -72,98 +89,43 @@ editProfileFormValidator.enableValidation();
 const imagePopup = new PopupWithImage("#preview-image-modal");
 const changeProfileAvatarPopup = new PopupWithForm(
   "#change-profile-avatar-modal",
-  handleChangeProfileAvatarFormSubmit,
-  "Save",
-  "Saving"
+  handleChangeProfileAvatarFormSubmit
 );
 const editProfilePopup = new PopupWithForm(
   "#edit-modal",
-  handleEditProfileFormSubmit,
-  "Save",
-  "Saving"
+  handleEditProfileFormSubmit
 );
 const addCardPopup = new PopupWithForm(
   "#add-card-modal",
-  handleAddCardFormSubmit,
-  "Save",
-  "Saving"
+  handleAddCardFormSubmit
 );
-const deleteCardPopup = new PopupWithForm(
-  "#delete-card-modal",
-  handleConfirmButtonSubmit,
-  "Yes",
-  "Deleting"
-);
+const deleteCardPopup = new PopupWithConfirmation("#delete-card-modal");
 
-// modal functions
-function createCard(cardData) {
-  const card = new Card(
-    {
-      cardData,
-      handleImageClick: (cardData) => {
-        imagePopup.open(cardData.name, cardData.link);
-      },
-
-      handleCardDelete: (cardElement) => {
-        deleteCardPopup.open();
-        deleteCardPopup.setSubmitAction(() => {
-          deleteCardPopup.setLoading(true, "Deleting...");
-          api
-            .deleteCard(cardElement._id)
-            .then((result) => {
-              card.deleteCard(result), deleteCardPopup.close();
-            })
-            .catch((err) => {
-              console.error(err);
-            })
-            .finally(() => {
-              deleteCardPopup.setLoading(false, "Yes");
-            });
-        });
-      },
-
-      handleCardLike: (cardElement) => {
-        if (!cardElement.isLiked) {
-          api
-            .likeCard(cardElement.cardId)
-            .then((res) => {
-              card.updateLikeStatus(res.isLiked);
-            })
-            .catch((err) => {
-              console.error(err);
-            });
-        } else {
-          api
-            .disLikeCard(cardElement.cardId)
-            .then((res) => {
-              card.updateLikeStatus(res.isLiked);
-            })
-            .catch((err) => {
-              console.error(err);
-            });
-        }
-      },
-      userId: userInfo.getId(),
-    }
-    // "#card-template"
-  );
-  return cardElement.getView();
+function handleCardDelete(cardId) {
+  deleteCardPopup.open();
+  deleteCardPopup.setSubmitAction(() => {
+    deleteCardPopup.setLoading(true, "Deleting...");
+    api
+      .deleteCard(cardId)
+      .then((res) => {
+        deleteCardPopup.close();
+        cardId.removeCard();
+      })
+      .catch((err) => {
+        console.error(err);
+      })
+      .finally(() => {
+        deleteCardPopup.setLoading(false, "Yes");
+      });
+  });
 }
 
-function renderCard(cardData) {
-  const card = createCard(cardData);
-  section.addItem(card);
-}
-function handleConfirmButtonSubmit() {
-  handleCardDelete();
-}
-
-function handleChangeProfileAvatarFormSubmit(data) {
+function handleChangeProfileAvatarFormSubmit(url) {
   changeProfileAvatarPopup.setLoading(true, "saving...");
   api
-    .userAvatar(data)
-    .then((data) => {
-      userInfo.setUserAvatar(data.avatar);
+    .updateAvatar(url)
+    .then((userData) => {
+      userInfo.setAvatar(userData.avatar);
       changeProfileAvatarPopup.close();
     })
     .catch((err) => {
@@ -172,11 +134,25 @@ function handleChangeProfileAvatarFormSubmit(data) {
     .finally(() => changeProfileAvatarPopup.setLoading(false, "Save"));
 }
 
+function handleEditProfileFormSubmit(data) {
+  editProfilePopup.setLoading(true, "Saving...");
+  api
+    .profileUpdate(data)
+    .then((userData) => {
+      userInfo.setUserInfo(userData.name, userData.job);
+      editProfilePopup.close();
+    })
+    .catch((err) => {
+      console.error(err);
+    })
+    .finally(() => editProfilePopup.setLoading(false, "Save"));
+}
+
 function handleAddCardFormSubmit(cardData) {
   addCardPopup.setLoading(true, "Saving...");
   api
     .addCard(cardData)
-    .then((cardData) => {
+    .then((card) => {
       createCard(cardData);
       addCardPopup.close();
     })
@@ -186,18 +162,26 @@ function handleAddCardFormSubmit(cardData) {
     .finally(() => addCardPopup.setLoading(false, "Create"));
 }
 
-function handleEditProfileFormSubmit(name, description) {
-  editProfilePopup.setLoading(true, "Saving...");
-  api
-    .editUserInfo({ name, description })
-    .then((data) => {
-      userInfo.setUserInfo(data.name, data.description);
-      editProfilePopup.close();
-    })
-    .catch((err) => {
-      console.error(err);
-    })
-    .finally(() => editProfilePopup.setLoading(false));
+function handleCardLike(item) {
+  if (!item.isLiked) {
+    api
+      .likeCard(item.getId())
+      .then((res) => {
+        item.updateLikeStatus(res.isLiked);
+      })
+      .catch((err) => {
+        console.error(err);
+      });
+  } else {
+    api
+      .disLikeCard(item.getId())
+      .then((res) => {
+        item.updateLikeStatus(res.isLiked);
+      })
+      .catch((err) => {
+        console.error(err);
+      });
+  }
 }
 
 // modal eventlisteners

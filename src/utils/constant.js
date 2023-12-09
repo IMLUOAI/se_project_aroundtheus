@@ -83,13 +83,3 @@ export const previewImageCaption = previewImageModal.querySelector(
 );
 
 //  Query Selectors for Close Buttons
-
-export const profileCloseButton = document.querySelector(
-  "#profile-modal-closed"
-);
-export const addCardModalCloseButton = addCardModal.querySelector(
-  "#add-card-modal-closed"
-);
-export const previewImageCloseButton = document.querySelector(
-  "#preview-image-closed"
-);

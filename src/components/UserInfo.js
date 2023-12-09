@@ -13,13 +13,23 @@ export default class UserInfo {
     return userInfo;
   }
 
-  setUserInfo(name, job) {
-    this._titleElement.textContent = name;
-    this._descriptionElement.textContent = job;
+  setUserInfo(userData) {
+    this._titleElement.textContent = userData.name;
+    this._descriptionElement.textContent = userData.job;
   }
+
   setAvatar(avatar) {
-    this._avatarElement.src = avatar;
+    if (avatar) {
+      this._avatarElement.src = avatar;
+    } else {
+      console.error("Avatar URL is missing or undefined");
+    }
   }
+
+  setId(userId) {
+    this._userId = userId;
+  }
+
   getId() {
     return this._userId;
   }
