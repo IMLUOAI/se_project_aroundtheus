@@ -7,22 +7,23 @@ export default class PopupWithConfirmation extends Popup {
     this._submitButton = this._popupForm.querySelector(".modal__submit-button");
     this._submitButtonText = this._submitButton.textContent;
   }
+
+  setSubmitAction(action) {
+    this._handleFormSubmit = action;
+  }
+  setLoading(submit, loadingText = "Saving...") {
+    if (submit) {
+      this._submitButton.textContent = loadingText;
+    } else {
+      this._submitButton.textContent = this._submitButtonText;
+    }
+  }
+
   setEventListeners() {
     this._popupForm.addEventListener("submit", (evt) => {
       evt.preventDefault();
       this._handleFormSubmit();
     });
     super.setEventListeners();
-  }
-
-  setSubmitAction(action) {
-    this._handleFormSubmit = action;
-  }
-  setLoading(isLoading, loadingText = "Saving...") {
-    if (isLoading) {
-      this._submitButton.textContent = loadingText;
-    } else {
-      this._submitButton.textContent = this._submitButtonText;
-    }
   }
 }

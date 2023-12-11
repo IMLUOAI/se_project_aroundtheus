@@ -37,11 +37,12 @@ let section;
 
 Promise.all([api.getUserInfo(), api.getInitialCards()])
   .then(([userData, initialCards]) => {
-    userInfo.setAvatar(userData.avatar);
+    console.log("userData:", userData);
     userInfo.setUserInfo({
       name: userData.name,
-      description: userData.job,
+      job: userData.about,
     });
+    userInfo.setAvatar(userData.avatar);
     section = new Section(
       {
         items: initialCards,
@@ -101,15 +102,19 @@ const addCardPopup = new PopupWithForm(
 );
 const deleteCardPopup = new PopupWithConfirmation("#delete-card-modal");
 
-function handleCardDelete(cardId) {
+function handleCardDelete(card) {
   deleteCardPopup.open();
   deleteCardPopup.setSubmitAction(() => {
     deleteCardPopup.setLoading(true, "Deleting...");
     api
-      .deleteCard(cardId)
-      .then((res) => {
-        deleteCardPopup.close();
-        cardId.removeCard();
+      .deleteCard(card.id)
+      .then(() => {
+        if (res.status === 200) {
+          deleteCardPopup.close();
+          card.removeCard();
+        } else {
+          console.error("Failed  to delete card. status:", res.status);
+        }
       })
       .catch((err) => {
         console.error(err);
@@ -124,8 +129,9 @@ function handleChangeProfileAvatarFormSubmit(url) {
   changeProfileAvatarPopup.setLoading(true, "saving...");
   api
     .updateAvatar(url)
-    .then((userData) => {
-      userInfo.setAvatar(userData.avatar);
+    .then((avatar) => {
+      console.log("Avatar update successful", avatar);
+      userInfo.setAvatar(avatar);
       changeProfileAvatarPopup.close();
     })
     .catch((err) => {
@@ -137,9 +143,9 @@ function handleChangeProfileAvatarFormSubmit(url) {
 function handleEditProfileFormSubmit(data) {
   editProfilePopup.setLoading(true, "Saving...");
   api
-    .profileUpdate(data)
+    .profileUpdate(data.name, data.about)
     .then((userData) => {
-      userInfo.setUserInfo(userData.name, userData.job);
+      userInfo.setUserInfo(userData.name, userData.about);
       editProfilePopup.close();
     })
     .catch((err) => {
@@ -148,11 +154,11 @@ function handleEditProfileFormSubmit(data) {
     .finally(() => editProfilePopup.setLoading(false, "Save"));
 }
 
-function handleAddCardFormSubmit(cardData) {
+function handleAddCardFormSubmit(card) {
   addCardPopup.setLoading(true, "Saving...");
   api
-    .addCard(cardData)
-    .then((card) => {
+    .addCard(card)
+    .then((cardData) => {
       createCard(cardData);
       addCardPopup.close();
     })
@@ -162,21 +168,21 @@ function handleAddCardFormSubmit(cardData) {
     .finally(() => addCardPopup.setLoading(false, "Create"));
 }
 
-function handleCardLike(item) {
-  if (!item.isLiked) {
+function handleCardLike(card) {
+  if (!card.isLiked) {
     api
-      .likeCard(item.getId())
+      .likeCard(card.getId())
       .then((res) => {
-        item.updateLikeStatus(res.isLiked);
+        card.updateLikeStatus(res.isLiked);
       })
       .catch((err) => {
         console.error(err);
       });
   } else {
     api
-      .disLikeCard(item.getId())
+      .disLikeCard(card.getId())
       .then((res) => {
-        item.updateLikeStatus(res.isLiked);
+        card.updateLikeStatus(res.isLiked);
       })
       .catch((err) => {
         console.error(err);

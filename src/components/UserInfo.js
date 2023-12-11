@@ -25,12 +25,4 @@ export default class UserInfo {
       console.error("Avatar URL is missing or undefined");
     }
   }
-
-  setId(userId) {
-    this._userId = userId;
-  }
-
-  getId() {
-    return this._userId;
-  }
 }
