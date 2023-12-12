@@ -28,7 +28,7 @@ const userInfo = new UserInfo(
 const api = new Api({
   baseUrl: "https://around-api.en.tripleten-services.com/v1",
   headers: {
-    authorization: "017f0c48-eeeb-4059-9c3c-1a662a9e8f92",
+    authorization: "c2e4b34f-c221-48a4-b144-59557b6d0818",
     "Content-Type": "application/json",
   },
 });
@@ -40,7 +40,7 @@ Promise.all([api.getUserInfo(), api.getInitialCards()])
     console.log("userData:", userData);
     userInfo.setUserInfo({
       name: userData.name,
-      job: userData.about,
+      about: userData.about,
     });
     userInfo.setAvatar(userData.avatar);
     section = new Section(
@@ -102,16 +102,16 @@ const addCardPopup = new PopupWithForm(
 );
 const deleteCardPopup = new PopupWithConfirmation("#delete-card-modal");
 
-function handleCardDelete(card) {
+function handleCardDelete(cardId) {
   deleteCardPopup.open();
   deleteCardPopup.setSubmitAction(() => {
     deleteCardPopup.setLoading(true, "Deleting...");
     api
-      .deleteCard(card.id)
+      .deleteCard(cardId)
       .then(() => {
         if (res.status === 200) {
           deleteCardPopup.close();
-          card.removeCard();
+          cardId.removeCard();
         } else {
           console.error("Failed  to delete card. status:", res.status);
         }
@@ -145,7 +145,10 @@ function handleEditProfileFormSubmit(data) {
   api
     .profileUpdate(data.name, data.about)
     .then((userData) => {
-      userInfo.setUserInfo(userData.name, userData.about);
+      userInfo.setUserInfo({
+        name: userData.name,
+        about: userData.about,
+      });
       editProfilePopup.close();
     })
     .catch((err) => {
@@ -168,21 +171,21 @@ function handleAddCardFormSubmit(card) {
     .finally(() => addCardPopup.setLoading(false, "Create"));
 }
 
-function handleCardLike(card) {
-  if (!card.isLiked) {
+function handleCardLike(cardId) {
+  if (!cardId.isLiked) {
     api
-      .likeCard(card.getId())
+      .likeCard(cardId.getId())
       .then((res) => {
-        card.updateLikeStatus(res.isLiked);
+        cardId.updateLikeStatus(res.isLiked);
       })
       .catch((err) => {
         console.error(err);
       });
   } else {
     api
-      .disLikeCard(card.getId())
+      .disLikeCard(cardId.getId())
       .then((res) => {
-        card.updateLikeStatus(res.isLiked);
+        cardId.updateLikeStatus(res.isLiked);
       })
       .catch((err) => {
         console.error(err);
@@ -194,7 +197,7 @@ function handleCardLike(card) {
 profileEditButton.addEventListener("click", () => {
   const user = userInfo.getUserInfo();
   profileNameInput.value = user.name;
-  profileDescriptionInput.value = user.job;
+  profileDescriptionInput.value = user.about;
   editProfileFormValidator.toggleButtonState();
   editProfilePopup.open();
 });

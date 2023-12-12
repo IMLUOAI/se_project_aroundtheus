@@ -8,14 +8,14 @@ export default class UserInfo {
   getUserInfo() {
     const userInfo = {
       name: this._titleElement.textContent,
-      job: this._descriptionElement.textContent,
+      about: this._descriptionElement.textContent,
     };
     return userInfo;
   }
 
   setUserInfo(userData) {
     this._titleElement.textContent = userData.name;
-    this._descriptionElement.textContent = userData.job;
+    this._descriptionElement.textContent = userData.about;
   }
 
   setAvatar(avatar) {
