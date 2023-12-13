@@ -37,10 +37,10 @@ let section;
 
 Promise.all([api.getUserInfo(), api.getInitialCards()])
   .then(([userData, initialCards]) => {
-    console.log("userData:", userData);
     userInfo.setUserInfo({
       name: userData.name,
       about: userData.about,
+      // _id: userData.id,
     });
     userInfo.setAvatar(userData.avatar);
     section = new Section(
@@ -102,6 +102,7 @@ const addCardPopup = new PopupWithForm(
 );
 const deleteCardPopup = new PopupWithConfirmation("#delete-card-modal");
 
+// handle functions
 function handleCardDelete(cardId) {
   deleteCardPopup.open();
   deleteCardPopup.setSubmitAction(() => {
@@ -109,12 +110,8 @@ function handleCardDelete(cardId) {
     api
       .deleteCard(cardId)
       .then(() => {
-        if (res.status === 200) {
-          deleteCardPopup.close();
-          cardId.removeCard();
-        } else {
-          console.error("Failed  to delete card. status:", res.status);
-        }
+        deleteCardPopup.close();
+        cardId.removeCard();
       })
       .catch((err) => {
         console.error(err);
@@ -172,7 +169,7 @@ function handleAddCardFormSubmit(card) {
 }
 
 function handleCardLike(cardId) {
-  if (!cardId.isLiked) {
+  if (!cardId._isLiked) {
     api
       .likeCard(cardId.getId())
       .then((res) => {

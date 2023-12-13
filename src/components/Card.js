@@ -1,13 +1,14 @@
 export default class Card {
   constructor(
-    { name, link, id, isLiked },
+    { name, link, _id, isLiked, likeCount },
     cardSelector,
     { handleImageClick, handleCardDelete, handleCardLike }
   ) {
     this._name = name;
     this._link = link;
-    this._id = id;
+    this._id = _id;
     this._isLiked = isLiked;
+    this._likeCount = likeCount;
     this._cardSelector = cardSelector;
     this._handleImageClick = handleImageClick;
     this._handleCardDelete = handleCardDelete;
@@ -25,10 +26,10 @@ export default class Card {
 
   _setEventListeners() {
     this._likeButton.addEventListener("click", () => {
-      this._handleCardLike();
+      this._handleCardLike(this);
     });
     this._deleteButton.addEventListener("click", () => {
-      this._handleCardDelete();
+      this._handleCardDelete(this._id);
     });
     this._cardImage.addEventListener("click", () => {
       this._handleImageClick(this._name, this._link);
@@ -42,12 +43,13 @@ export default class Card {
 
   updateLikeStatus(isLiked) {
     this._isLiked = isLiked;
+    this._likeCount = this.likeCount;
     this._renderLikes();
   }
 
   _renderLikes() {
-    this._cardLikes.textContent = this.isLiked;
-    if (this.isLiked) {
+    this._cardLikes.textContent = this._likeCount;
+    if (this._isLiked) {
       this._likeButton.classList.add("card__heart-button_active");
     } else {
       this._likeButton.classList.remove("card__heart-button_active");
