@@ -27,11 +27,6 @@
   background: url("../vectors/Trash.svg");
 }
 
-#delete-form {
-  width: 358px;
-  margin: 18.5px 36px;
-}
-
 .card__image {
   width: 282px;
   height: 282px;

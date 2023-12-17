@@ -37,11 +37,7 @@ let section;
 
 Promise.all([api.getUserInfo(), api.getInitialCards()])
   .then(([userData, initialCards]) => {
-    userInfo.setUserInfo({
-      name: userData.name,
-      about: userData.about,
-      // _id: userData.id,
-    });
+    userInfo.setUserInfo({ name: userData.name, about: userData.about });
     userInfo.setAvatar(userData.avatar);
     section = new Section(
       {
@@ -126,9 +122,8 @@ function handleChangeProfileAvatarFormSubmit(url) {
   changeProfileAvatarPopup.setLoading(true, "saving...");
   api
     .updateAvatar(url)
-    .then((avatar) => {
-      console.log("Avatar update successful", avatar);
-      userInfo.setAvatar(avatar);
+    .then((data) => {
+      userInfo.setAvatar(data.avatar);
       changeProfileAvatarPopup.close();
     })
     .catch((err) => {
@@ -140,7 +135,7 @@ function handleChangeProfileAvatarFormSubmit(url) {
 function handleEditProfileFormSubmit(data) {
   editProfilePopup.setLoading(true, "Saving...");
   api
-    .profileUpdate(data.name, data.about)
+    .profileUpdate(data)
     .then((userData) => {
       userInfo.setUserInfo({
         name: userData.name,
@@ -194,7 +189,7 @@ function handleCardLike(cardId) {
 profileEditButton.addEventListener("click", () => {
   const user = userInfo.getUserInfo();
   profileNameInput.value = user.name;
-  profileDescriptionInput.value = user.about;
+  profileDescriptionInput.value = user.description;
   editProfileFormValidator.toggleButtonState();
   editProfilePopup.open();
 });

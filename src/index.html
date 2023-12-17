@@ -58,7 +58,7 @@
           <label class="modal__label">
             <input
               type="url"
-              name="link"
+              name="avatar"
               class="modal__input"
               id="avatar-url-input"
               placeholder="Image URL"
@@ -195,7 +195,11 @@
           id="delete-card-modal-closed"
         ></button>
         <h2 class="modal__title">Are you sure?</h2>
-        <form class="modal__form" id="delete-form" novalidate>
+        <form
+          class="modal__form modal__form_type-delete"
+          id="modal-delete-form"
+          novalidate
+        >
           <button
             type="submit"
             class="modal__submit-button modal__submit-button_disabled"

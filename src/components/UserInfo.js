@@ -8,21 +8,16 @@ export default class UserInfo {
   getUserInfo() {
     const userInfo = {
       name: this._titleElement.textContent,
-      about: this._descriptionElement.textContent,
+      description: this._descriptionElement.textContent,
     };
     return userInfo;
   }
-
   setUserInfo(userData) {
     this._titleElement.textContent = userData.name;
     this._descriptionElement.textContent = userData.about;
   }
 
   setAvatar(avatar) {
-    if (avatar) {
-      this._avatarElement.src = avatar;
-    } else {
-      console.error("Avatar URL is missing or undefined");
-    }
+    this._avatarElement.src = avatar;
   }
 }

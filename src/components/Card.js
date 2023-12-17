@@ -58,6 +58,7 @@ export default class Card {
 
   removeCard() {
     this._cardElement.remove();
+    this._cardElement = null;
   }
 
   getView() {
