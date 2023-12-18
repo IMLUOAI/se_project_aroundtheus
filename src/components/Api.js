@@ -73,4 +73,11 @@ export default class Api {
       headers: this._headers,
     }).then(this._getRes);
   }
+
+  // getLikeCount(cardId) {
+  //   return fetch(`${this._baseUrl}/cards/${cardId}/likeCount`, {
+  //     method: "DELETE",
+  //     headers: this._headers,
+  //   }).then(this._getRes);
+  // }
 }

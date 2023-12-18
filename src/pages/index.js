@@ -56,7 +56,7 @@ function createCard(cardData) {
   const card = new Card(cardData, "#card-template", {
     handleImageClick: () => imagePopup.open(cardData.name, cardData.link),
     handleCardDelete,
-    handleCardLike,
+    handleCardLike: handleCardLike,
   });
   return card.getView();
 }
@@ -104,7 +104,7 @@ function handleCardDelete(cardId) {
   deleteCardPopup.setSubmitAction(() => {
     deleteCardPopup.setLoading(true, "Deleting...");
     api
-      .deleteCard(cardId)
+      .deleteCard(cardId._id)
       .then(() => {
         deleteCardPopup.close();
         cardId.removeCard();
@@ -153,8 +153,8 @@ function handleAddCardFormSubmit(card) {
   addCardPopup.setLoading(true, "Saving...");
   api
     .addCard(card)
-    .then((cardData) => {
-      createCard(cardData);
+    .then((res) => {
+      renderCard(res);
       addCardPopup.close();
     })
     .catch((err) => {
@@ -164,7 +164,7 @@ function handleAddCardFormSubmit(card) {
 }
 
 function handleCardLike(cardId) {
-  if (!cardId._isLiked) {
+  if (!cardId.isLiked) {
     api
       .likeCard(cardId.getId())
       .then((res) => {
