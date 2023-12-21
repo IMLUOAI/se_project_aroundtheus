@@ -56,7 +56,9 @@ export const profileDescription = document.querySelector(
 export const profileEditButton = document.querySelector(
   ".profile__edit-button"
 );
-
+export const profileAvatarEditButton = document.querySelector(
+  ".profile__avatar-edit-button"
+);
 export const profileForm = document.forms["profile-form"];
 export const profileNameInput = profileForm.querySelector(
   "#profile-name-input"
@@ -81,13 +83,3 @@ export const previewImageCaption = previewImageModal.querySelector(
 );
 
 //  Query Selectors for Close Buttons
-
-export const profileCloseButton = document.querySelector(
-  "#profile-modal-closed"
-);
-export const addCardModalCloseButton = addCardModal.querySelector(
-  "#add-card-modal-closed"
-);
-export const previewImageCloseButton = document.querySelector(
-  "#preview-image-closed"
-);
