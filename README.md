@@ -1,4 +1,4 @@
-# Project 8: Around The U.S.
+# Project 9: Around The U.S.
 
 ### Overview
 
@@ -11,10 +11,11 @@
 - validate.js
 - NPM/WEBPACK WAS INSTALLED
 - SUB.JS / Destructuring/Refactoring/
+- APIs
 
 **Intro**
 key knowledge points:
-
+  
 - BEM: BLOCK-ELEMENT-MODIFY
 - DOM: DOCUMENT-OBJECT-MODEL
 - OOP: OBJECT-ORIENTED-PROGRAMMING (1. Encapsulation 2. Inheritance 3. Polymorphism)
@@ -45,4 +46,4 @@ DOM was primarily used in this project, like the EventListener, handlers, templa
 
 The page now start to be manipulated by the npm run dev / WEBPACK server, more mechanic now
 
-Still has another 8 projecdts ahead/// it's time to conquer the back-end part!!!!
+Still has another 6 projecdts ahead/// it's time to conquer the back-end part!!!!
